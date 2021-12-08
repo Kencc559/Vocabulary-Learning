@@ -47,7 +47,7 @@ class YahooSpider(scrapy.Spider):
         item = YahooItem()
         qword = response.xpath('//div[@id="web"]//h3[@class="title lh-24"]/span/text()').get()
         if qword is None:
-            print("很抱歉，字典找不到您要的資料喔！")
+            print("很抱歉，字典找不到您要的資料喔！!")
             return 0
         translations = response.xpath('//div[@class="compList mb-25 p-rel"]/ul/li')
         # audio_list = response.xpath('//li[@class="first"]//div[@class="compText mr-10 d-ib"]/p/span')[1]
