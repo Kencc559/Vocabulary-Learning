@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #top{
+        /* border: solid red 1px; */
+        margin: 0 auto;
+        width: 100%;
+        color: #fff;
+        height: 45px;
+        position: fixed;
+        float: left;
+        top: 1px;
+        background-color: #005AB5;
+        border-radius: 10%;
+        font-size: 18px;
+    }
+    #bottom{
+        width: 100%;
+        height: 22px;
+        position: fixed;
+        bottom: 0;
+        background-color: #aaa;
+        line-height: 22px;
+        padding-left: 5px;
+        
+    }
+ 
+    #top>#nav{
+        /* width: 1300px; */
+        margin: 0 auto;
+        margin-left: 55px;
+        overflow: hidden;
+        /* border: solid red 1px; */
+        list-style-type: none;
+        line-height: 48px;      
+    }
+    #nav a{
+        color: white;
+        text-decoration: none;
+    }
+    .home{
+        
+        /* border: solid red 1px; */
+        float: left;
+    }
+    
+    .review{
+        padding-right:30px;
+        margin-left: 60px;
+        float: left;
+        
+    }
+    .learned_web{
+        padding-right:50px;
+        float: left;
+    }
+    .login{
+        padding-right:60px;
+        margin-left: 800px;
+        float: left;
+    }
+    #content{
+        width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        /* border: solid red 2px; */
+        /* padding-top: 0px; */
+        margin-top: 75px;
+
+    }
+    .search{
+        width: 700px;
+        /* margin: 0 auto; */
+        
+        /* border: solid blue 1px; */
+    }
+    .search_word{
+        width: 450px;
+        height: 35px;
+        padding: 4px 0 0 20px;
+        font-size: 18px;
+        border: solid 5px#8E8E8E;
+        border-radius: 40px;
+        display: inline-block;
+        margin-bottom: 10px;
+        margin-left: 50px;
+    }
+    .search_icon{
+        width: 48px;
+        height: 48px;
+        border: solid #000 1px;
+        border-radius: 100%;
+        background-color: yellow;
+        margin-right: 95px;
+        margin-top: 2px;
+        /* margin-bottom: 20px; */
+        font-size: 15px;
+        display: block;
+        float: right;
+        /* background-image: url('\elements\search.png'); */
+        
+    }
+    .search_img{
+        /* margin-top: 20px; */
+        width: 15px;
+        height: 15px;
+        /* background-image:; */
+    }
+    
+    .result{
+        overflow: hidden;
+        width: 1100px;
+        margin: 0 auto;
+        margin-top: 20px;
+        text-align: left;
+    }
+    .show_result{        
+        border: solid #0080FF 1px;
+        padding: 15px;
+        width: 496px;
+        height: 400px;
+        float: left;
+    }
+    .show_result>a>img{
+        width: 30px;
+        margin-top: 10px;
+        margin-left: 5px;
+    }
+
+    .show_result ul{
+        list-style-type: none;
+        margin-top: 13px;
+    }
+    .show_result h4{
+        width: 50px;
+        height: 22px;
+        background: #ccc;
+        text-align: center;
+        line-height: 22px;
+    }
+    .show_result li{
+        /* margin: 0; */
+        padding: 0;
+        /* border: solid red 1px; */
+        margin: 6px 0;
+        /* padding-bottom: 5px; */
+        font-size: 16px;
+    }
+    .show_result li:nth-child(2){
+        padding-left: 2px;
+    }
+    
+    .show_pic{
+        border: solid #00E3E3 1px;
+
+        width: 500px;
+        float: right;
+        margin-right: 10px;
+        
+    }
+    .show_pic>ul{
+        
+        margin: 0 auto;
+        width: 420px;
+        /* border: solid red 1px; */
+
+        list-style-type: none;
+        overflow: hidden;
+    }
+    .show_pic>ul>li{
+        float: left;
+        margin: 0 2px;
+    }
+    .show_pic>ul>li>img{
+        width: 200px;
+    }
+    .save_word{
+        margin-left: 10px;
+        padding: 3px;
+        /* display: inline-block; */
+        width: 15x;
+        font-size: 15px;
+
+    }
+    
+    /* p{
+        height: 400px;
+    } */
+    
+</style>
+
+
+<body>
+    
+    <div id="top">
+        <ul id="nav">
+            <li class="home">
+                <span style="color: #ccc;">首頁</span>
+            </li>
+            <li class="review">
+                <a href="/review_list.html">複習</a>
+            </li>
+            <li class="learned_web">
+                <a href="/learn_eng_website_list.html">英文網站</a>
+            </li>
+            <li class="login">
+                <a href="/login.html">登入/登出</a>
+            </li>
+         </ul>   
+
+    </div>
+        
+    <div id="content">
+        <div class="search">
+            <!-- <label for="">單字查詢</label>    -->
+            <form action="/" method="get">
+                <input  type="text" class="search_word" placeholder="Search English -> Chinese" name="searchWord">
+                <!-- <input type="submit" class="search_icon" value="搜尋"> -->
+                <button type="submit" class="search_icon">搜尋
+                    <img class="search_img" src="imgs/search.png" alt="No Pictures">
+                
+                </button>
+                    
+            </form>
+            
+           
+
+        </div>
+        <div class="result">
+            <button type="button" class="save_word">儲存</button>
+            <div class="show_result"> <div id="save_ok">查詢結果:</div>
+                <hr>
+                <h2 id="rWord">hat</h2> 
+                <a href="audio/hat/hat.mp3" target="_self">
+                    
+                    <img src="imgs/sound.jpg" alt="">
+                </a>
+                
+                <ul>
+                    <li><h4>n.[c]</h4></li>
+                    <li>有邊的帽子</li>
+                </ul>
+                <ul>
+                    <li><h4>vt.</h4></li>
+                    <li>給……戴上帽子</li>
+                </ul>
+                
+            </div>
+            <div class="show_pic">圖片展示
+                <ul>
+                    <li><img src="audio/hat/hat_1.jpeg" alt=""></li>
+                    <li><img src="audio/hat/hat_2.jpeg" alt=""></li>
+                </ul>
+                <ul>
+                    <li><img src="audio/hat/hat_3.jpeg" alt=""></li>
+                    <li><img src="audio/hat/hat_4.jpeg" alt=""></li>
+                </ul>
+                
+            </div>
+        </div>
+        
+    </div>
+    <div id="bottom"><p>&copy;2021</p> </div>
+
+    <script>
+        
+        var searchWord=document.getElementsByClassName("search_word")[0];
+        // console.log(searchWord);
+        searchWord.onclick=function(){
+            searchWord.placeholder="";
+        };
+
+        var saveWord=document.getElementsByClassName("save_word")[0];
+        var rWord=document.getElementById("rWord");
+        var save_ok=document.getElementById("save_ok");
+        console.log(saveWord);
+        console.log(save_ok);
+        saveWord.onclick=function(){
+            save_ok.innerText="Save OK !!";
+        };
+
+        
+    </script>
+    
+</body>
+</html>

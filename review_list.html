@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script src="js/jquery.min.js"></script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #top{
+        width: 100%;
+        color: #fff;
+        height: 45px;
+        position: fixed;
+        top: 1px;
+        background-color: #005AB5;
+        border-radius: 10%;
+        font-size: 18px;
+    }
+    #bottom{
+        width: 100%;
+        height: 25px;
+        position: fixed;
+        bottom: 0;
+        background-color: #aaa;
+        line-height: 25px;
+        padding-left: 5px;
+        
+    }
+ 
+    #nav{
+        margin-left: 55px;
+        overflow: hidden;
+        /* border: solid red 1px; */
+        list-style: none;
+        line-height: 48px;        
+    }
+    #nav a{
+        color: white;
+        text-decoration: none;
+    }
+    .home{
+        
+        /* border: solid red 1px; */
+        float: left;
+    }
+    
+    .review{
+        padding-right:30px;
+        margin-left: 60px;
+        float: left;
+        color: #ccc;
+    }
+    .learned_web{
+        padding-right:50px;
+        float: left;
+    }
+    .login{
+        padding-right:60px;
+        margin-left: 800px;
+        float: left;
+    }
+    #content{
+        width: 900px;
+        margin: 0 auto;
+        /* text-align: center; */
+        /* border: solid red 2px; */
+        margin-top: 57px;
+        overflow: hidden;
+
+    }
+
+    table{
+        /* width: 500px; */
+        margin-top: 50px;
+        float: left;
+        border: double #FFAAD5 5px;
+        text-align: center;
+        font-size: 20px;
+        /* display: block;
+        overflow-x: auto;
+        white-space: nowrap; */
+    }
+    
+    th{
+        width: 250px;
+        /* border: solid red 1px; */
+        /* border-left: none;
+        border-right: none; */
+        border: none;
+        border-bottom: solid #FFAAD5 2px;
+        padding: 8px 10px;
+    }
+    td{
+        
+        /* border-bottom: solid blue 2px; */
+        height: 30px;
+        padding: 5px 12px;
+        border-left: none;
+        border-right: none;
+        /* border: none;
+        border-bottom: solid #000 2px; */
+
+    }
+    .vline{
+        width: 40px;
+        border-left: solid #FFAAD5 2px;
+    }
+    tr>.words{
+        text-align: left;
+    }
+    tr>.words>div{
+        width: 250px;
+        overflow-x: auto;
+    }
+    tr>.words a{
+        font-size: 25px;
+        text-decoration: none;
+    }
+    tr>.words a:hover {
+        background-color: #FFFF6F;
+    }
+    #content .btn_del{
+        border: solid #000 1px;
+        background: #ccc;
+        padding: 2px;
+    }
+
+    #setup_search{
+        width: 300px;
+        /* border: solid red 1px; */
+        float: left;
+        margin: 50px 0 0 100px;
+        font-size: 20px;
+        text-align: center;
+    }
+    #setup_search>h2{
+        /* font-size: 30px; */
+        letter-spacing: 3px;
+    }
+    .time-day{
+        /* border: solid red 1px; */
+        margin: 18px 0 5px 46px;
+        float: left;
+    }
+    .time-day>input{
+        width: 75px;
+        height: 25px;
+        font-size: 14px;
+        display: block;
+        margin-top: 10px;
+        padding-left: 5px;
+        text-align: center;
+    }
+    #setup_search button{
+        margin-top: 20px ;
+        padding: 5px 0;
+        width: 214px;
+        letter-spacing: 10px;
+        text-align: center;
+        text-decoration: none;
+        font: bold 20px Arial, sans-serif;
+        color: #19667d;
+        background: #70c9e3 ;
+        text-shadow: 1px 1px 1px rgba(255,255,255, .22);
+        border: none;
+        border-radius: 30px;
+        box-shadow: 2px 2px 2px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    }
+    #setup_search button:hover{
+        box-shadow:  1px 1px 1px rgba(0, 0, 0, .29), inset 0px 0px 2px rgba(0, 0, 0, .5);
+    }
+    #setup_search button:active{
+        box-shadow: inset 0px 0px 4px rgba(0, 0, 0, .8);
+    }
+    
+   
+</style>
+
+
+<body>
+    
+    <div id="top">
+        <ul id="nav">
+            <li class="home">
+                <a href="/index.html">首頁</a>
+            </li>
+            <li class="review">
+                <span style="color: #ccc;">複習</span>
+            </li>
+            <li class="learned_web">
+                <a href="/learn_eng_website_list.html">英文網站</a>
+            </li>
+            <li class="login">
+                <a href="/login.html">登出</a>
+            </li>
+            
+            
+        </ul>
+
+    </div>
+    <div id="content">
+        
+        <table border="1" cellspacing="0">
+            <caption><h2>學習記錄</h1></caption>
+            <tr>
+                <th>單詞</th>
+                <th class="vline">次數</th>
+                <th class="vline">週期<h6>(天)</h6></th>
+                <th class="vline">刪除</th>
+                            
+            </tr>
+            <tr>
+                <td class="words">
+                    <div>
+                        <a href="#" id="review_words" onclick="review_words()">
+                            hat
+                        </a>
+                    </div> 
+                </td>
+                <td>10</td>   
+                <td>25</td>   
+                <td><button >Yes</button> </td>          
+            </tr>
+            <tr>
+                <td class="words"><a href="">phenomenon</a></td>
+                <td>5</td>   
+                <td>28</td>             
+                <td><button>Yes</button> </td> 
+            </tr>
+            <tr>
+                <td class="words"><a href="#">word</a></td>
+                <td>3</td>   
+                <td>10</td>             
+                <td><button>Yes</button> </td> 
+            </tr>
+
+        </table> 
+        
+        <div id="setup_search">
+            <h2>查詢</h2>
+            <hr style="border: solid #005AB5 2px;">
+            <form action="#" method="get">
+                <div class="time-day" >
+                    <label for="counter">學習次數</label>  
+                    <input id="counter" 
+                            type="text" 
+                            list="typecounter" 
+                            placeholder="請選擇" 
+                            name="counter"
+                            maxlength="6">
+                    <datalist id="typecounter">
+                        <option>5</option>
+                        <option>10</option>
+                        <option>20</option>
+                    </datalist>
+                    <!-- <select name="times" id="times">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                    </select> -->
+                </div>
+                <div class="time-day">
+                    <label for="during"> 週期(天)</label>  
+                    <input id="during" 
+                            type="text" 
+                            list="typeduring" 
+                            placeholder="請選擇" 
+                            name="during"
+                            maxlength="5">
+                    <datalist id="typeduring">
+                        <option>5</option>
+                        <option>14</option>
+                        <option>30</option>
+                    </datalist>
+
+                </div>
+                <div style="clear: both;"></div>
+                <button type="submit">確定</button>
+            </form>
+                       
+            
+        </div>
+        
+    </div>
+    <div id="bottom"><p>&copy;2021</p> </div>
+
+    <script src="js/searcheng.js"></script>
+</body>
+</html>
