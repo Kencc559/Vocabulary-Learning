@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.min.js"></script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #top{
+        width: 100%;
+        color: #fff;
+        height: 45px;
+        position: fixed;
+        top: 1px;
+        background-color: #005AB5;
+        border-radius: 10%;
+        font-size: 18px;
+    }
+    #bottom{
+        width: 100%;
+        height: 25px;
+        position: fixed;
+        bottom: 0;
+        background-color: #aaa;
+        line-height: 25px;
+        padding-left: 5px;
+        
+    }
+ 
+    #nav{
+        margin-left: 55px;
+        overflow: hidden;
+        list-style: none;
+        line-height: 48px;
+        
+    }
+    #nav a{
+        color: white;
+        text-decoration: none;
+    }
+    #nav>.home{
+        float: left;
+    }
+    
+    #nav>.register{
+        padding-right: 100px;
+        float: right;
+    }
+
+    #content{
+        width: 400px;
+        margin: 0 auto;
+        /* text-align: center; */
+        /* border: solid 0red 1px; */
+        /* padding-top: 0px; */
+        margin-top: 90px;
+
+    }
+    .user_pwd{
+        /* border: solid red 1px; */
+        width: 319px;
+        display: block;
+        margin: 15px 5px;
+        font-size: 25px;
+    } 
+    label{
+        width: 58px;
+        display: inline-block;
+        text-align: right;
+        /* border: solid 1px red; */
+
+    }
+    input{
+        border: solid 1px #000;
+        width: 215px;
+        margin-left: 3px;
+        vertical-align: top;
+        padding: 9px 5px;
+        font-size: 15px;
+    }
+    #content .error{
+        /* border: solid red 1px; */
+        color: red;
+        padding-left: 67px;
+        font-size: 15px;
+        display: none;
+
+    }
+    .btn{
+        /* border: solid 1px #234b9a; */
+        width: 194px;
+        margin: 0 auto;
+        margin-top: 28px;
+        margin-left: 67px;
+    }
+    .btn button{
+        border: solid 1px #0066CC;
+        width: 80px;
+        padding: 5px 7px;
+        font-size: 15px;
+        color: #fff;
+        background-color: #0066CC;
+    }
+    .btn button:nth-child(2){
+        margin-left: 30px;
+    }
+    .btn button>a{
+        text-decoration: none;
+        cursor: default;
+        color: #fff;
+    }
+    h1{
+        border: solid #0066CC 3px;
+        width: 315px;
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 30px;
+        margin-left: 2px;
+        
+    }
+
+</style>
+<body>
+    
+    <div id="top">
+        <ul id="nav">
+            <li class="home">
+                <a href="/index.html">首頁</a>
+            </li>
+            <li class="register">
+                <a href="/register.html">註冊</a> 
+            </li>
+        </ul>
+    </div>
+    <form action="" onsubmit="return checkvalue();">
+        <div id="content">        
+            <h1>登入</h1>
+            <div style="clear: both;"></div>
+            <div class="user_pwd">
+                <label for="username">帳號:</label> 
+                <input type="text" id="username" name="username" placeholder="請輸入帳號">
+                <div id="error1" class="error">用戶名不能空白 !!</div>
+            </div>
+            <div class="user_pwd">
+                <label for="password">密碼:</label> 
+                <input type="text" id="password" name="password" placeholder="請輸入密碼">
+                <div id="error2" class="error">密碼不能空白 !!</div>
+            </div>
+            <div class="btn">
+                <button type="submit" id="btn_submit">送出</button>
+                <button type="button" id="btn_cancle" onclick="clr_login()">清除</button>
+            </div>
+          
+        </div>    
+    </form> 
+    
+    <div id="bottom"><p>&copy;2021</p> </div>
+
+    <!-- <script>
+        // var username = document.getElementById("username");
+        // var password = document.getElementById("password");        
+        // var submit_btn = document.getElementById("submit_btn");
+        // btn_cancle.onclick=function(){
+        //     // document.location.href="index.html";
+        //     username.value = "";
+        //     password.value = "";
+        // };
+
+        // $("#btn_cancle").on("click", function(){
+        //     $("#username").val("");
+        //     $("#password").val("");
+        //     // alert("button");
+        // });
+
+    </script> -->
+    <script src="js/searcheng.js"></script>
+    
+</body>
+</html>

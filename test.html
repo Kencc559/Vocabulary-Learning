@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img{
+        width: 20%;
+        /* height: 50px; */
+        /* background: 100%; */
+    }
+    #ss{
+        width: 200px;
+        height: 100px;
+        border: solid red 1px;
+        margin-top: 20px;
+        overflow: scroll;
+        /* overflow-x: auto; */
+        /* overflow-y: auto; */
+
+    }
+</style>
+
+<body>
+    <form action="">
+        <input id="name" type="text" value="ttest" name="username">
+        
+        <input type="submit" value="input submit" name="tt"/>
+        <input type="button" value="input button"/>
+    </form>
+    <button onclick="btn()"> button </button>
+    <button><a href="/review_list.html">review !!</a></button>
+<button id="btn2">奌 我</button>
+    <h2 id="show">pp</h2>
+
+    <input type="button" style="background-image:url('elements/search.png');width:120px;height:30px;" value="測試按鈕">
+    <button type="button" style="width:120px;height:30px;">Search
+        <img src="imgs/search.png" alt="">
+    </button>
+
+    <div id="ss">
+        <p>我是滾輪~~~~~~~~~~~~~~~~~~~~1111~~~~`</p> 
+    </div>
+    
+    <script>
+        var a=10, b=20, c=30;
+        console.log(result=a<b?a:b);
+        var d="A"
+        console.log(d.charCodeAt(0))
+        function btn(){
+            var txt=document.getElementById("name");
+            var show=document.getElementById("show");
+            show.innerText=txt.value;
+        };
+        btn2.onclick = function(){
+            var txt=document.getElementById("name");
+            var show=document.getElementById("show");
+            show.innerText="";
+        };
+
+    </script>
+</body>
+</html>
