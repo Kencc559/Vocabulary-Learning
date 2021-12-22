@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.min.js"></script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #top{
+        width: 100%;
+        color: #fff;
+        height: 45px;
+        position: fixed;
+        top: 1px;
+        background-color: #005AB5;
+        border-radius: 10%;
+        font-size: 18px;
+    }
+    #bottom{
+        width: 100%;
+        height: 25px;
+        position: fixed;
+        bottom: 0;
+        background-color: #aaa;
+        line-height: 25px;
+        padding-left: 5px;
+        
+    }
+ 
+    #nav{
+        margin-left: 55px;
+        overflow: hidden;
+        /* border: solid red 1px; */
+        list-style: none;
+        line-height: 48px;
+        
+    }
+    #nav a{
+        color: white;
+        text-decoration: none;
+    }
+    .home{
+        
+        /* border: solid red 1px; */
+        float: left;
+    }
+    
+    .review{
+        padding-right:30px;
+        margin-left: 60px;
+        float: left;
+        
+    }
+    .learned_web{
+        padding-right:50px;
+        float: left;
+        color: #ccc;
+    }
+    .login{
+        padding-right:60px;
+        margin-left: 800px;
+        float: left;
+    }
+    #content{
+        width: 500px;
+        margin: 0 auto;
+        
+        /* text-align: center; */
+        /* border: solid red 1px; */
+        /* padding-top: 30px; */
+        margin-top: 80px;
+    }
+    #website{
+        /* border: solid red  1px; */
+        width: 500px;
+        margin: 10px 0;
+        /* overflow: hidden; */
+    }
+
+    #website_web_name, #website_web_addr{
+        width: 150px;
+        border: solid blue 1px;
+        font-size: 14px;
+        padding: 6px 8px;
+        margin-right: 15px;
+        
+    }
+    #website_web_addr{
+        width: 400px;
+        margin-bottom: 20px;
+    }
+    #website_add, #website_modify, #website_del{
+        width: 60px;
+        margin-bottom: 15px;
+        margin-left: 12px;
+        padding: 5px 0;
+        border: solid blue 2px;
+        border-radius: 30px;
+        font-size: 15px;
+    }
+    #website_modify, #website_del{
+        display: none;
+    }
+    .web_list{
+        /* border: solid red 1px; */
+        /* width: 400px; */
+        margin-top:10px;
+        font-size: 20px;
+        overflow: hidden;
+    }
+    .saved_webname{
+        border: solid #005ab5 2px;
+        /* border-bottom: none; */
+        width: 392px;
+        height: 300px;
+        float: left;
+        padding: 8px;
+        padding-left: 10px;
+        overflow-y: auto;
+        
+    }
+    
+
+   .saved_webname>ul{
+       /* border: red solid 1px; */
+       /* float: left; */
+       margin: 5px 3px;
+       
+       list-style: none;
+       overflow: hidden;
+       
+   }
+   /* .webName{
+       border: solid red 1px; 
+       float: left;
+    } */
+   .webName>a{
+       text-decoration: none;
+
+   }
+   .saved_webname span{
+       color:#3C3C3C;
+   }
+   .webAddr{
+       /* border: solid red 1px; */
+       width: 340px;
+       height: 20px;
+       float: left;
+       margin-left: 25px;
+       white-space: nowrap;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       padding: 2px 0;
+       
+       
+       
+   }
+    #web_list_edit, #web_list_cancle{
+        float: left;
+        width:60px;
+        margin: 8px 0px;
+        margin-left: 12px;
+        padding: 5px;
+        border: solid blue 2px;
+        border-radius: 25%;
+        font-size: 15px;
+    }
+    #web_list_cancle{
+        display: none;
+    }
+</style>
+
+
+<body>
+    
+    <div id="top">
+        <ul id="nav">
+            <li class="home">
+                <a href="/index.html">首頁</a>
+            </li>
+            <li class="review">
+                <a href="/review_list.html">複習</a>
+            </li>
+            <li class="learned_web">
+                <span style="color: #ccc;">英文網站</span>
+
+            </li>
+            <li class="login">
+                <a href="/login.html">登出</a>
+            </li>
+        </ul>
+
+    </div>
+    <div id="content">
+        <h2>請輸入學習網站</h2>
+        <form action="#">
+            <div id="website">
+              <input id="website_web_name" type="text" placeholder="(名稱)" name="web_name">
+              <input id="website_add" type="submit" value="加入"> 
+              <input id="website_modify" type="button" value="修改">
+              <input id="website_del" type="button" value="刪除">
+              <input id="website_web_addr"type="text" placeholder="(網圵)" name="web_addr">
+               
+            </div>
+        </form>
+        <h2>學習網站</h2>
+        <div class="web_list">
+            <div class="saved_webname">
+                <ul>
+                    <li class="webName"><a href="https://www.esl-lab.com/easy/" target="_blank">聽力練習</a></li>
+                    <li class="webAddr">https://www.esl-lab.com/easy/</li>
+                </ul>
+                <ul>
+                    <li class="webName"><a href="https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional" target="_blank">單字查詢</a></li>
+                    <li class="webAddr">https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional</li>
+                </ul>
+                <!-- <ul>
+                    <li class="webName"><a href="https://store.liveabc.com/" target="_blank">LiveABC</a></li>
+                    <li class="webAddr">https://store.liveabc.com/</li>
+                </ul> -->
+                
+            </div>
+               
+            <button id="web_list_edit" onclick="btn_edit_learnWeb()">編輯</button>
+            <button id="web_list_cancle" onclick="btn_cancle_learnWeb()">取消</button>
+        </div>
+        
+    </div>
+    <div id="bottom"><p>&copy;2021</p> </div>
+    
+    <!-- <script>var add = document.getElementById('add');
+            var modify = document.getElementById('modify');
+            var del = document.getElementById('del');
+            var edit = document.getElementById('edit');
+            var cancle = document.getElementById('cancle');
+        edit.onclick=function(){
+            
+            add.style.display = 'none';
+            modify.style.display = 'inline';
+            del.style.display = 'inline';
+            cancle.style.display ='inline';
+            edit.style.background = '#ccc';
+            edit.style.border = 'none';          
+
+        };
+        cancle.onclick=function(){
+            add.style.display = 'inline';
+            modify.style.display = 'none';
+            del.style.display = 'none';
+            cancle.style.display ='none';
+            edit.display = 'inline';
+            edit.style.background = 'none';
+            edit.style.border = 'solid blue 2px';      
+
+        };
+    </script> -->
+    <script src="js/searcheng.js"></script>
+</body>
+</html>
