@@ -38,7 +38,6 @@
         overflow: hidden;
         list-style: none;
         line-height: 48px;
-        
     }
     #nav a{
         color: white;
@@ -48,38 +47,41 @@
         float: left;
     }
     
-    #nav>.register{
-        padding-right: 100px;
-        float: right;
-    }
-
     #content{
         width: 400px;
         margin: 0 auto;
         /* text-align: center; */
-        /* border: solid 0red 1px; */
+        /* border: solid red 1px; */
         /* padding-top: 0px; */
         margin-top: 90px;
 
     }
     .user_pwd{
         /* border: solid red 1px; */
-        width: 319px;
+        width: 370px;
         display: block;
-        margin: 15px 5px;
-        font-size: 25px;
+        margin: 15px 0;
+        font-size: 22px;
     } 
+    #content .star{
+        /* border: solid red 1px; */
+        /* width: 97px; */
+        height: 5px;
+        color: red;
+        font-size: 20px;
+    }
     label{
-        width: 58px;
-        display: inline-block;
+        /* border: solid red 1px; */
+        width: 105px;
+        /* display: inline-block; */
         text-align: right;
-        /* border: solid 1px red; */
+        /* margin-top: 1px; */
+        margin-left: 5px;
 
     }
     input{
         border: solid 1px #000;
-        width: 215px;
-        margin-left: 3px;
+        width: 205px;
         vertical-align: top;
         padding: 9px 5px;
         font-size: 15px;
@@ -87,19 +89,22 @@
     #content .error{
         /* border: solid red 1px; */
         color: red;
-        padding-left: 67px;
+        padding-left: 105px;
         font-size: 15px;
+        margin: 0;
         display: none;
-
     }
     .btn{
         /* border: solid 1px #234b9a; */
-        width: 194px;
-        margin: 0 auto;
-        margin-top: 28px;
-        margin-left: 67px;
+        /* border: solid red 1px; */
+        width: 315px;
+        /* margin: 0 auto; */
+        text-align: center;
+        margin-top: 30px;
+        /* margin-left: 120px; */
     }
     .btn button{
+        
         border: solid 1px #0066CC;
         width: 80px;
         padding: 5px 7px;
@@ -117,15 +122,22 @@
     }
     h1{
         border: solid #0066CC 3px;
-        width: 315px;
+        width: 324px;
         text-align: center;
         font-size: 40px;
         margin-bottom: 30px;
         margin-left: 2px;
         
     }
-
+    /* h1 span{
+        width: 80px;
+        margin-left: 3px;
+        font-size: larger;
+    } */
+    
 </style>
+
+
 <body>
     
     <div id="top">
@@ -133,52 +145,38 @@
             <li class="home">
                 <a href="/">首頁</a>
             </li>
-            <li class="register">
-                <a href="/register.html">註冊</a> 
-            </li>
         </ul>
+
     </div>
-    <form action="" onsubmit="return checkvalue();">
-        <div id="content">        
-            <h1>登入</h1>
+    <form action="#" onsubmit="return check_register();" method="post">
+        <div id="content">
+            <h1><span>註冊</span></h1>
             <div style="clear: both;"></div>
+            
             <div class="user_pwd">
-                <label for="username">帳號:</label> 
+                <div class="star">*</div>
+                <label for="username">帳號設定:</label> 
                 <input type="text" id="username" name="username" placeholder="請輸入帳號">
                 <div id="error1" class="error">用戶名不能空白 !!</div>
             </div>
+            
             <div class="user_pwd">
-                <label for="password">密碼:</label> 
-                <input type="text" id="password" name="password" placeholder="請輸入密碼">
-                <div id="error2" class="error">密碼不能空白 !!</div>
+                <label for="password">密碼設定:</label> 
+                <input type="text" id="password1" name="password" placeholder="請輸入密碼">
+            </div>
+            <div class="user_pwd">
+                <label for="password">密碼確認:</label> 
+                <input type="text" id="password2" name="password" placeholder="請輸入相同密碼">
             </div>
             <div class="btn">
-                <button type="submit" id="btn_submit">送出</button>
-                <button type="button" id="btn_cancle" onclick="clr_login()">清除</button>
+                <button type="submit" id="btn_submit">確定</button>
+                <button id="btn_cancle" type="button" onclick="clr_register()">取消</button>
             </div>
-          
         </div>    
-    </form> 
+    </form>
     
     <div id="bottom"><p>&copy;2021</p> </div>
-
-    <!-- <script>
-        // var username = document.getElementById("username");
-        // var password = document.getElementById("password");        
-        // var submit_btn = document.getElementById("submit_btn");
-        // btn_cancle.onclick=function(){
-        //     // document.location.href="index.html";
-        //     username.value = "";
-        //     password.value = "";
-        // };
-
-        // $("#btn_cancle").on("click", function(){
-        //     $("#username").val("");
-        //     $("#password").val("");
-        //     // alert("button");
-        // });
-
-    </script> -->
+    
     <script src="js/searcheng.js"></script>
     
 </body>

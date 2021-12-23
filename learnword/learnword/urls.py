@@ -1,3 +1,5 @@
+#file: learnword/urls.py --main urls
+
 """learnword URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -16,17 +18,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url,include
-from . import views
+# from . import views
 from index.views import index_view
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$',index_view),
-    url(r'^user/',include('users.urls'))
-    # url(r'^login',views.login_view),
-    # url(r'^register',views.register_view),
-    # url(r'^review_list',views.review_list_view),
-    # url(r'^learn_eng_website_list',views.learn_eng_website_list_view),
+    url(r'^user/',include('users.urls')),
+    url(r'^vocab/',include('vocabs.urls')),
+
 
 ]

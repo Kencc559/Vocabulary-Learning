@@ -1,6 +1,15 @@
-from django.shortcuts import render
+#file: index/views.py
 
+from django.shortcuts import render
+from django.http import HttpResponse
 # Create your views here.
 
 def index_view(request):
-    return render(request, "index.html")
+    if request.method == "GET":
+        return render(request, "index.html")
+    elif request.method == "POST":
+        searchword = request.POST.get('searchWord','0')
+        print(searchword)
+        return HttpResponse('searchword: '+searchword)
+
+
