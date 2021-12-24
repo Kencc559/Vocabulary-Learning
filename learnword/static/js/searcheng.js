@@ -54,7 +54,7 @@ function clr_login(){
 }
 
 function clr_register(){
-    document.location.href="/login.html";
+    document.location.href="login.html";
 
 }
 
@@ -79,8 +79,8 @@ function rePage(){
 }
 
 function review_words(){
-    // window.alert(123);
-    $("#review_words").attr("href","/review_word.html");
+//     window.alert(123);
+    $("#review_words").attr("href","review_word/");
 }
 
 

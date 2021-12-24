@@ -1,10 +1,5 @@
 #file: learnword/views.py
 
-from django.http import HttpResponse
-from django.shortcuts import render
-
-def index_view(request):
-    return render(request, "index.html")
 
 
 login_form_html = '''

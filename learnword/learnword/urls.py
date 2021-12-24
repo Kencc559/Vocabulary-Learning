@@ -19,14 +19,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url,include
 # from . import views
-from index.views import index_view
+# from index import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$',index_view),
-    url(r'^user/',include('users.urls')),
-    url(r'^vocab/',include('vocabs.urls')),
+    url(r'^t1/',include('index.urls')),
+    url(r'^t1/user/',include('users.urls')),
+    url(r'^t1/vocab/',include('vocabs.urls')),
 
 
 ]

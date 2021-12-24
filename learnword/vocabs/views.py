@@ -3,8 +3,14 @@
 from django.shortcuts import render
 
 # Create your views here.
-def review_view(request):
+def review(request):
+    print("review")
     return render(request, "review_list.html")
 
-def learn_eng_website_list_view(request):
+def reviewword(request):
+    print("reviewword")
+
+    return render(request, "review_word.html")
+
+def learn_eng_website_list(request):
     return render(request, "learn_eng_website_list.html")
