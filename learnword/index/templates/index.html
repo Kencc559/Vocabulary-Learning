@@ -208,13 +208,23 @@
                 <span style="color: #ccc;">首頁</span>
             </li>
             <li class="review">
-                <a href="vocab/review_list.html">複習</a>
+                <a href="/t1/vocab/review_list.html">複習</a>
             </li>
             <li class="learned_web">
-                <a href="vocab/learn_eng_website_list.html">英文網站</a>
+                <a href="/t1/vocab/learn_eng_website_list.html">英文網站</a>
             </li>
             <li class="login">
-                <a href="user/login.html">登入</a>
+                {% if index.login == 'ok' %}
+                <a href="/t1/user/logout">登出</a>
+                {% else %}
+                <a href="/t1/user/login.html">登入</a>
+                {% endif %}
+            </li>
+            <li>
+<!--             個人中心-->
+                {% if index.login == 'ok'%}
+                <a href="/t1/user/infor">{{ index.infor }}</a>
+                {% endif %}
             </li>
          </ul>   
 
@@ -232,12 +242,12 @@
                 </button>
                     
             </form>
-            
-           
 
         </div>
         <div class="result">
+            {% if index.login == 'ok' %}
             <button type="button" class="save_word">儲存</button>
+            {% endif %}
             <div class="show_result"> <div id="save_ok">查詢結果:</div>
                 <hr>
                 <h2 id="rWord">hat</h2> 

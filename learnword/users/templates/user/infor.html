@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/static/js/jquery.min.js"></script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #top{
+        width: 100%;
+        color: #fff;
+        height: 45px;
+        position: fixed;
+        top: 1px;
+        background-color: #005AB5;
+        border-radius: 10%;
+        font-size: 18px;
+    }
+    #bottom{
+        width: 100%;
+        height: 25px;
+        position: fixed;
+        bottom: 0;
+        background-color: #aaa;
+        line-height: 25px;
+        padding-left: 5px;
+
+    }
+
+    #nav{
+        margin-left: 55px;
+        overflow: hidden;
+        list-style: none;
+        line-height: 48px;
+    }
+    #nav a{
+        color: white;
+        text-decoration: none;
+    }
+    #nav>.home{
+        float: left;
+    }
+
+    #content{
+        width: 400px;
+        margin: 0 auto;
+
+        /* text-align: center; */
+        /* border: solid red 1px; */
+        /* padding-top: 0px; */
+        margin-top: 90px;
+
+    }
+    .user_pwd{
+        /* border: solid red 1px; */
+        width: 370px;
+        display: block;
+        margin: 15px 0;
+        font-size: 22px;
+    }
+    #content .star{
+        /* border: solid red 1px; */
+        /* width: 97px; */
+        height: 5px;
+        color: red;
+        font-size: 20px;
+    }
+    label{
+        /* border: solid red 1px; */
+        width: 105px;
+        /* display: inline-block; */
+        text-align: right;
+        /* margin-top: 1px; */
+        margin-left: 5px;
+
+    }
+    input{
+        border: solid 1px #000;
+        width: 205px;
+        vertical-align: top;
+        padding: 9px 5px;
+        font-size: 15px;
+    }
+    #content .error{
+        /* border: solid red 1px; */
+        color: red;
+        padding-left: 105px;
+        font-size: 15px;
+        margin: 0;
+        display: none;
+    }
+    .btn{
+        /* border: solid 1px #234b9a; */
+<!--        border: solid red 1px;-->
+        width: 400px;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 30px;
+        /* margin-left: 120px; */
+    }
+    .btn button{
+
+        border: solid 1px #0066CC;
+        width: 80px;
+        padding: 5px 7px;
+        font-size: 15px;
+        color: #fff;
+        background-color: #0066CC;
+    }
+    .btn button:nth-child(2){
+        margin-left: 30px;
+    }
+    .btn button>a{
+        text-decoration: none;
+        cursor: default;
+        color: #fff;
+    }
+    h1{
+        border: solid #0066CC 3px;
+        width: 324px;
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 30px;
+        margin-left: 2px;
+
+    }
+    /* h1 span{
+        width: 80px;
+        margin-left: 3px;
+        font-size: larger;
+    } */
+    #content .user_pwd_error{
+        padding-left: 110px;
+        color: red;
+        font-size:15px;
+    }
+
+</style>
+
+
+<body>
+
+    <div id="top">
+        <ul id="nav">
+            <li class="home">
+            <a href="/t1">首頁</a>
+            </li>
+        </ul>
+
+    </div>
+    <form action="infor" method="post">
+        <div id="content">
+            <h1><span>個人中心</span></h1>
+            <div style="clear: both;"></div>
+
+            <div class="user_pwd">
+                <label>帳號:</label>
+                <label id="username">{{username}}</label>
+<!--                <input type="" id="username" name="username">-->
+                <div class="user_pwd_error">{{username_error}}</div>
+<!--                <span></span>-->
+            </div>
+
+            <div class="user_pwd">
+                <label for="password">密碼修改:</label>
+                <input type="text"
+                       id="password1"
+                       name="password1"
+                       placeholder="請輸入密碼"
+                       onclick="clr_error_reg()">
+                <div class="user_pwd_error">{{ password1_error }}</div>
+<!--                <spin></spin>-->
+            </div>
+            <div class="user_pwd">
+                <label for="password">密碼確認:</label>
+                <input type="text" id="password2" name="password2" placeholder="請輸入相同密碼">
+                <div class="user_pwd_error">{{ password2_error }}</div>
+<!--                <spin>{{ password2_error }}</spin>-->
+            </div>
+            <div class="btn">
+                <button type="submit" id="btn_submit">確定</button>
+                <button id="btn_cancle" type="button" onclick="clr_infor()">取消</button>
+            </div>
+        </div>
+    </form>
+
+    <div id="bottom"><p>&copy;2021</p> </div>
+
+    <script src="/static/js/searcheng.js"></script>
+
+</body>
+</html>

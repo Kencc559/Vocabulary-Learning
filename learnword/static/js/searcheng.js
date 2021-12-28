@@ -21,11 +21,12 @@ log.submit = {
     }
 
 }
-function checkvalue(){
+function check_login(){
     var $username = $("#username");
     var $password = $("#password");
     var $error1 = $("#error1");
     var $error2 = $("#error2");
+
 
     if (!log.submit.check($username.val()) && !log.submit.check($password.val())){
         return true;
@@ -42,37 +43,46 @@ function checkvalue(){
             return false;
         }
     }
-
-
 }
 
 function clr_login(){
     // window.alert(123);
     $("#username").val("");
     $("#password").val("");
+    $("#error3").text("");
     $("#username").focus();
 }
 
 function clr_register(){
-    document.location.href="login.html";
+    document.location.href="/t1/user/login";
 
 }
 
 function check_register(){
     var $username = $("#username");
     var $password = $("#password");
-    var $error1 = $("#error1");
+    var $username_error = $("#username_error");
+    var $user_pwd_error =$(".user_pwd_error");
 
     if (!log.submit.check($username.val())){
         return true;
     }else{
-        $error1.show();
-        log.submit.autohide($error1);
+        $username_error.text("用戶名不能空白 !!");
+        $username_error.show();
+        log.submit.autohide($username_error);
         $username.focus();
         return false;
     }
-
 }
+function clr_error_reg(){
+    var $user_pwd_error = $(".user_pwd_error");
+    $user_pwd_error.css("display","none");
+}
+
+function clr_infor(){
+    document.location.href="/t1";
+}
+
 function rePage(){
     document.location.href="review_list.html";
    
@@ -117,7 +127,7 @@ var edit_website = {
             _html += '</ul>';
             return _html;
         }
-    }
+}
 
 var origin_website = {
     site:function(numb,name, web){
@@ -203,9 +213,7 @@ function showWord_learn(numb){
         }
         else{
             $("#website_web_name").val('Nan');
-            $("#website_web_addr").val('Nan'); 
-            
-
+            $("#website_web_addr").val('Nan');
         }
 
     }
