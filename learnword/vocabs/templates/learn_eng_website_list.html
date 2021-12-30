@@ -74,12 +74,12 @@
         /* text-align: center; */
         /* border: solid red 1px; */
         /* padding-top: 30px; */
-        margin-top: 80px;
+        margin-top: 60px;
     }
     #website{
         /* border: solid red  1px; */
         width: 500px;
-        margin: 10px 0;
+        margin: 5px,0;
         /* overflow: hidden; */
     }
 
@@ -93,7 +93,7 @@
     }
     #website_web_addr{
         width: 400px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
     #website_add, #website_modify, #website_del{
         width: 60px;
@@ -110,7 +110,7 @@
     .web_list{
         /* border: solid red 1px; */
         /* width: 400px; */
-        margin-top:10px;
+        margin-top:5px;
         font-size: 20px;
         overflow: hidden;
     }
@@ -136,10 +136,10 @@
        overflow: hidden;
        
    }
-   /* .webName{
+   /*.webName{
        border: solid red 1px; 
        float: left;
-    } */
+    }*/
    .webName>a{
        text-decoration: none;
 
@@ -192,34 +192,45 @@
 
             </li>
             <li class="login">
-                <a href="/t1/user/login.html">登出</a>
+                <a href="/t1/user/login">登出</a>
             </li>
         </ul>
 
     </div>
     <div id="content">
         <h2>請輸入學習網站</h2>
-        <form action="#">
+        <form action="learn_eng_website_list" method="post">
             <div id="website">
               <input id="website_web_name" type="text" placeholder="(名稱)" name="web_name">
               <input id="website_add" type="submit" value="加入"> 
               <input id="website_modify" type="button" value="修改">
               <input id="website_del" type="button" value="刪除">
-              <input id="website_web_addr"type="text" placeholder="(網圵)" name="web_addr">
+              <input id="website_web_addr" type="text" placeholder="(網址)" name="web_addr">
                
             </div>
         </form>
         <h2>學習網站</h2>
         <div class="web_list">
             <div class="saved_webname">
+<!--                <ul>-->
+<!--                    <li class="webName"><a href="" target="_blank">名稱</a></li>-->
+<!--                    <li class="webAddr">網址</li>-->
+<!--                </ul>-->
+                {% for web in webs %}
                 <ul>
-                    <li class="webName"><a href="https://www.esl-lab.com/easy/" target="_blank">聽力練習</a></li>
-                    <li class="webAddr">https://www.esl-lab.com/easy/</li>
+                    <li class="webName"><a href="{{ web.webaddr }}" target="_blank">{{ web.webname }}</a></li>
+                    <li class="webAddr">{{ web.webaddr}}</li>
                 </ul>
-                <ul>
-                    <li class="webName"><a href="https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional" target="_blank">單字查詢</a></li>
-                    <li class="webAddr">https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional</li>
-                </ul>
+                {% endfor %}
+<!--                <ul>-->
+<!--                    <li class="webName"><a href="https://www.esl-lab.com/easy/" target="_blank">聽力練習</a></li>-->
+<!--                    <li class="webAddr">https://www.esl-lab.com/easy/</li>-->
+<!--                </ul>-->
+<!--                <ul>-->
+<!--                    <li class="webName"><a href="https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional" target="_blank">單字查詢</a></li>-->
+<!--                    <li class="webAddr">https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional</li>-->
+<!--                </ul>-->
+
                 <!-- <ul>
                     <li class="webName"><a href="https://store.liveabc.com/" target="_blank">LiveABC</a></li>
                     <li class="webAddr">https://store.liveabc.com/</li>

@@ -1,7 +1,9 @@
 #file: vocabs/views.py
 
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
+from users.models import User
+from . import models
 
 # Create your views here.
 
@@ -27,4 +29,18 @@ def reviewword(request):
 
 @check_login
 def learn_eng_website_list(request):
-    return render(request, "learn_eng_website_list.html")
+    uid = request.session['user']['id']
+    if request.method == 'GET':
+        # auser = User.objects.get(id=uid)
+        # webs = auser.learningweb_set.all()
+        webs = models.Learningweb.objects.filter(user = uid)
+        return render(request, "learn_eng_website_list.html",locals())
+    elif request.method == 'POST':
+        auser = User.objects.get(id=uid)
+        webname = request.POST.get('web_name','')
+        webaddr = request.POST.get('web_addr','')
+        aweb = models.Learningweb.objects.create(webname=webname, webaddr=webaddr, user=auser)
+        webs = auser.learningweb_set.all()
+        return render(request, "learn_eng_website_list.html", locals())
+
+

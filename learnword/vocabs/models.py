@@ -8,5 +8,11 @@ class Vocab(models.Model):
     vocab_type = models.CharField("vocab_type", max_length=10)
     chinese = models.TextField()
     audio = models.ImageField(upload_to='audio/')
-    image = models.ImageField(upload_to='image/')
+    image = models.ImageField(upload_to='images/')
     user = models.ForeignKey(User, null=True, on_delete="models.CASCADE")
+
+class Learningweb(models.Model):
+    webname = models.CharField("webname", max_length=30)
+    webaddr = models.CharField("webaddr", max_length=100)
+    user = models.ForeignKey(User, null=True, on_delete="models.CASCADE")
+

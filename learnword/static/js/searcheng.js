@@ -2,7 +2,8 @@ var log = {
     startday: "2021-12-7",
     endday: "2021-12/21",
     updateday: "",
-    anchor: "Ken"
+    anchor: "Ken",
+    arr: "",
 }
 // var clr ={
 //     cancle : "clr1"
@@ -184,6 +185,13 @@ var arrwebsite = [
 ]
 
 function editdata(){
+//    $(".saved_webname").text("");
+    console.log('test');
+    var $webname = $(".saved_webname");
+//    console.log($webname.html());
+    log.arr=$webname.html();
+
+    console.log(log.arr);
     $(".saved_webname").text("");
     for( var j=0; j<arrwebsite.length; j++ ){
         var _HTML=edit_website.site(j, arrwebsite[j].name, arrwebsite[j].web);
@@ -194,11 +202,14 @@ function editdata(){
 function origindata(){
     $(".saved_webname").text("");
     $("#website_web_name").val(""); 
-    $("#website_web_addr").val(""); 
-    for( var j=0; j<arrwebsite.length; j++ ){
-        var _HTML=origin_website.site(j, arrwebsite[j].name, arrwebsite[j].web);
-        $(".saved_webname").append(_HTML);
-    }
+    $("#website_web_addr").val("");
+    var $webname = $(".saved_webname");
+    console.log(log.arr);
+    $webname.html(log.arr);
+//    for( var j=0; j<arrwebsite.length; j++ ){
+//        var _HTML=origin_website.site(j, arrwebsite[j].name, arrwebsite[j].web);
+//        $(".saved_webname").append(_HTML);
+//    }
 }
 
 function showWord_learn(numb){
