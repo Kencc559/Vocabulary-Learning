@@ -4,6 +4,7 @@ var log = {
     updateday: "",
     anchor: "Ken",
     arr: "",
+    arr2: "",
 }
 // var clr ={
 //     cancle : "clr1"
@@ -85,14 +86,15 @@ function clr_infor(){
 }
 
 function rePage(){
-    document.location.href="review_list.html";
+    document.location.href="/t1/vocab/review_list.html";
    
 }
 
-function review_words(){
-//     window.alert(123);
-    $("#review_words").attr("href","review_word/");
-}
+//function review_words(word){
+////     window.alert(123);
+//    $("#review_words").attr("href","review_word/word");
+//        console.log(word)
+//}
 
 
 function btn_edit_learnWeb(){
@@ -123,8 +125,8 @@ var edit_website = {
         site:function(numb, name, web){
             var _html = "" ;
             _html +='<ul>';
-            _html +='<li id="webName" class="webName" onclick="showWord_learn('+numb+')"><span><u>'+name+'</u></span></li>';
-            _html += '<li class="webAddr" onclick="showWord_learn('+numb+')"><span><u>'+web+'</u></span></li>';
+            _html +='<li id="webName'+numb+'" class="webName" onclick="showWord_learn('+numb+')"><span><u>'+name+'</u></span></li>';
+            _html += '<li id="webAddr'+numb+'" class="webAddr" onclick="showWord_learn('+numb+')"><span><u>'+web+'</u></span></li>';
             _html += '</ul>';
             return _html;
         }
@@ -132,69 +134,49 @@ var edit_website = {
 
 var origin_website = {
     site:function(numb,name, web){
+        numb += 1;
         var _html = "" ;
         _html +='<ul>';
-        _html +='<li class="webName"><a href="'+web+'" target="_blank">'+name+'</a></li>';
-        _html += '<li class="webAddr">'+web+'</li>';
+        _html +='<li id="webName'+numb+'" class="webName"><a href="'+web+'" target="_blank">'+name+'</a></li>';
+        _html += '<li id="webAddr'+numb+'" class="webAddr">'+web+'</li>';
         _html += '</ul>';
         return _html;
     }
 }
 
 var arrwebsite = [
-    {
-        name : "聽力練習",
-        web : "https://www.esl-lab.com/easy/"
-    },
-    {
-        name: "單字查詢",
-        web: "https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional"
-    },
-    // {
-    //     name: "單字查詢ireoireowpow",
-    //     web: "https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional"
-    // },
-    // {
-    //     name: "單字查詢",
-    //     web: "https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional"
-    // },
-    // {
-    //     name: "單字查詢",
-    //     web: "https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional"
-    // },
-    // {
-    //     name: "單字查詢",
-    //     web: "https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional"
-    // },
-    // {
-    //     name: "單字查詢",
-    //     web: "https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional"
-    // },
-    // {
-    //     name: "單字查詢",
-    //     web: "https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional"
-    // },
-    // {
-    //     name: "單字查詢",
-    //     web: "https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional"
-    // },
-    // {
-    //     name: "單字查詢",
-    //     web: "https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional"
-    // },
+//    {
+//        name : "聽力練習",
+//        web : "https://www.esl-lab.com/easy/"
+//     },
 ]
 
 function editdata(){
 //    $(".saved_webname").text("");
     console.log('test');
-    var $webname = $(".saved_webname");
-//    console.log($webname.html());
-    log.arr=$webname.html();
+    var $webdata = $(".webdata");
+//    var $webName = $(".webdata #webName a");
+//    var $webAddr = $(".webdata #webAddr");
 
-    console.log(log.arr);
+//    console.log($webname.html());
+    for(var j=1; j<$webdata.length+1; j++){
+        var webName = $("#webName"+j+" a").text();
+        var webAddr = $("#webAddr"+j ).text();
+        console.log(webName);
+        console.log(webAddr);
+        var data = {
+            name : webName,
+            addr : webAddr
+        };
+        arrwebsite.push(data);
+
+    }
+    console.log(arrwebsite);
+
+
     $(".saved_webname").text("");
     for( var j=0; j<arrwebsite.length; j++ ){
-        var _HTML=edit_website.site(j, arrwebsite[j].name, arrwebsite[j].web);
+        var _HTML=edit_website.site(j, arrwebsite[j].name, arrwebsite[j].addr);
         $(".saved_webname").append(_HTML);
     }
 }
@@ -203,13 +185,13 @@ function origindata(){
     $(".saved_webname").text("");
     $("#website_web_name").val(""); 
     $("#website_web_addr").val("");
-    var $webname = $(".saved_webname");
-    console.log(log.arr);
-    $webname.html(log.arr);
-//    for( var j=0; j<arrwebsite.length; j++ ){
-//        var _HTML=origin_website.site(j, arrwebsite[j].name, arrwebsite[j].web);
-//        $(".saved_webname").append(_HTML);
-//    }
+//    var $webname = $(".saved_webname");
+//    console.log(log.arr);
+//    $webname.html(log.arr);
+    for( var j=0; j<arrwebsite.length; j++ ){
+        var _HTML=origin_website.site(j, arrwebsite[j].name, arrwebsite[j].addr);
+        $(".saved_webname").append(_HTML);
+    }
 }
 
 function showWord_learn(numb){
@@ -228,4 +210,72 @@ function showWord_learn(numb){
         }
 
     }
+}
+
+function searching_index(){
+//    console.log('test');
+    if (($('#search_word').val() == '') || ($('#search_word').val() == 'Please input your vocabulary...')){
+        $('#search_word').css({'color':'#FF60AF'});
+        $('#search_word').val('Please input your vocabulary...');
+        return false
+    }
+
+    $('#search_icon').css('background','#ccc');
+    return true
+
+}
+
+function searchword(){
+    var $search_word = $('#search_word');
+//         console.log('test');
+        $search_word.css({'color':'black'});
+        $search_word.val('');
+        $search_word.attr('placeholder','');
+
+}
+function save_index(){
+        //var $saveword = $("#btn_save_word");
+        var $rword = $("#rWord");
+        var $saveok = $("#save_ok");
+        var $chinese_dic =$('#chinese_dic li');
+        var $audio_path = $('#show_result a');
+        var $imgs1_path = $('#imgs1_1 img')
+//        var $imgs2_path = $('#imgs1_2 img')
+//        var $imgs3_path = $('#imgs2_1 img')
+//        var $imgs4_path = $('#imgs2_2 img')
+
+//        console.log($imgs1_path.attr('src'));
+//        console.log($imgs2_path.attr('src'));
+//        console.log($imgs3_path.attr('src'));
+//        console.log($imgs4_path.attr('src'));
+//        console.log($chinese_dic.text());
+        $.ajax({
+            url:'/t1/index/save/',
+            type:'post',
+            datatype:'json',
+            async: true,
+            data: {
+                word : $rword.text(),
+                audio_path : $audio_path.attr('href'),
+                imgs_path : $imgs1_path.attr('src'),
+
+
+
+            },
+            success: function(data){
+                console.log('ajax_test OK');
+                console.log(data.word);
+                console.log(data.audio_path);
+                console.log(data.imgs_path);
+                console.log(data.chinese);
+                console.log(data.mesg);
+                $saveok.text(data.mesg);
+            },
+
+
+
+        })
+//        $saveok.text("Save OK !!");
+
+
 }

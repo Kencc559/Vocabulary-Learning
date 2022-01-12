@@ -217,9 +217,9 @@
 <!--                    <li class="webAddr">網址</li>-->
 <!--                </ul>-->
                 {% for web in webs %}
-                <ul>
-                    <li class="webName"><a href="{{ web.webaddr }}" target="_blank">{{ web.webname }}</a></li>
-                    <li class="webAddr">{{ web.webaddr}}</li>
+                <ul class="webdata">
+                    <li id="webName{{ forloop.counter }}" class="webName"><a href="{{ web.webaddr }}" target="_blank">{{ web.webname }}</a></li>
+                    <li id="webAddr{{ forloop.counter }}" class="webAddr">{{ web.webaddr}}</li>
                 </ul>
                 {% endfor %}
 <!--                <ul>-->

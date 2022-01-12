@@ -3,11 +3,13 @@
 from django.conf.urls import url
 from . import views
 
+
 urlpatterns = [
-    url(r'^review_word',views.reviewword),
+    url(r'^review_word/(?P<word>\w+)$',views.reviewword),
+    url(r'^review/sorting$',views.sorting),
+    url(r'^review/del/(?P<word>\w+)',views.del_view),
     url(r'^review',views.review),
-
     url(r'^learn',views.learn_eng_website_list),
-]
 
+]
 

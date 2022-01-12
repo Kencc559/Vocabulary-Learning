@@ -79,6 +79,7 @@
     table{
         /* width: 500px; */
         margin-top: 50px;
+        margin-bottom: 50px;
         float: left;
         border: double #FFAAD5 5px;
         text-align: center;
@@ -216,37 +217,61 @@
                 <th class="vline">刪除</th>
                             
             </tr>
+            {% for word in words %}
             <tr>
                 <td class="words">
                     <div>
-                        <a href="#" id="review_words" onclick="review_words()">
-                            hat
+                        <a href="/t1/vocab/review_word/{{ word.vocab }}" id="review_words">
+<!--                        <a href="" id="review_words" onclick="review_words({{ word.vocab }})">-->
+                            {{ word.vocab }}
+
                         </a>
                     </div> 
                 </td>
-                <td>10</td>   
-                <td>25</td>   
-                <td><button >Yes</button> </td>          
+                <td>
+                    {{ word.review_cycle}}
+                </td>
+                <td>
+                    {{ word.delta }}
+                </td>
+                <td><button><a href="/t1/vocab/review/del/{{ word.vocab }}">Yes</button> </td>
             </tr>
+            {% empty %}
             <tr>
-                <td class="words"><a href="">phenomenon</a></td>
-                <td>5</td>   
-                <td>28</td>             
-                <td><button>Yes</button> </td> 
+                <td class="words">
+                    <div>
+                        <a href="#">
+                            {{ err_msg }}
+                        </a>
+                    </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td><button ></button> </td>
             </tr>
-            <tr>
-                <td class="words"><a href="#">word</a></td>
-                <td>3</td>   
-                <td>10</td>             
-                <td><button>Yes</button> </td> 
-            </tr>
+
+
+
+            {% endfor %}
+<!--            <tr>-->
+<!--                <td class="words"><a href="">phenomenon</a></td>-->
+<!--                <td>5</td>   -->
+<!--                <td>28</td>             -->
+<!--                <td><button>Yes</button> </td> -->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td class="words"><a href="#">word</a></td>-->
+<!--                <td>3</td>   -->
+<!--                <td>10</td>             -->
+<!--                <td><button>Yes</button> </td> -->
+<!--            </tr>-->
 
         </table> 
         
         <div id="setup_search">
             <h2>查詢</h2>
             <hr style="border: solid #005AB5 2px;">
-            <form action="#" method="get">
+            <form action="/t1/vocab/review/sorting" method="get">
                 <div class="time-day" >
                     <label for="counter">學習次數</label>  
                     <input id="counter" 

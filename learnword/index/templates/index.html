@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="/static/js/jquery.min.js"></script>
 </head>
 <style>
     *{
@@ -70,7 +71,7 @@
         float: left;
     }
     #content{
-        width: 1200px;
+        width: 1230px;
         margin: 0 auto;
         text-align: center;
         /* border: solid red 2px; */
@@ -87,9 +88,9 @@
     .search_word{
         width: 450px;
         height: 35px;
-        padding: 4px 0 0 20px;
-        font-size: 18px;
-        border: solid 5px#8E8E8E;
+        padding: 2px 0 0 20px;
+        font-size: 20px;
+        border: solid 5px #8E8E8E;
         border-radius: 40px;
         display: inline-block;
         margin-bottom: 10px;
@@ -119,7 +120,7 @@
     
     .result{
         overflow: hidden;
-        width: 1100px;
+        width: 1130px;
         margin: 0 auto;
         margin-top: 20px;
         text-align: left;
@@ -128,18 +129,23 @@
         border: solid #0080FF 1px;
         padding: 15px;
         width: 496px;
-        height: 400px;
         float: left;
+
+    }
+    .rWord{
+        padding-top: 10px;
     }
     .show_result>a>img{
         width: 30px;
         margin-top: 10px;
         margin-left: 5px;
+<!--        display: none;-->
     }
 
     .show_result ul{
         list-style-type: none;
         margin-top: 13px;
+
     }
     .show_result h4{
         width: 50px;
@@ -162,11 +168,12 @@
     
     .show_pic{
         border: solid #00E3E3 1px;
-
         width: 500px;
         float: right;
         margin-right: 10px;
-        
+        margin-bottom: 30px;
+        padding: 15px;
+
     }
     .show_pic>ul{
         
@@ -176,6 +183,7 @@
 
         list-style-type: none;
         overflow: hidden;
+        padding-top: 5px;
     }
     .show_pic>ul>li{
         float: left;
@@ -233,10 +241,15 @@
     <div id="content">
         <div class="search">
             <!-- <label for="">單字查詢</label>    -->
-            <form action="/" method="post">
-                <input  type="text" class="search_word" placeholder="Search English -> Chinese" name="searchWord">
+            <form action="/t1/" method="post" onsubmit="return searching_index()">
+                <input id="search_word"
+                       type="text"
+                       class="search_word"
+                       placeholder="Search English -> Chinese"
+                       name="searchWord"
+                       onclick="searchword()">
                 <!-- <input type="submit" class="search_icon" value="搜尋"> -->
-                <button type="submit" class="search_icon">搜尋
+                <button id="search_icon" type="submit" class="search_icon">搜尋
                     <img class="search_img" src="/static/images/search.png" alt="No Pictures">
                 
                 </button>
@@ -246,36 +259,59 @@
         </div>
         <div class="result">
             {% if index.login == 'ok' %}
-            <button type="button" class="save_word">儲存</button>
+            {% if search == 'ok' %}
+            <button id="btn_save_word"
+                    type="button"
+                    class="save_word"
+                    onclick="save_index()">儲存
+            </button>
             {% endif %}
-            <div class="show_result"> <div id="save_ok">查詢結果:</div>
+            {% endif %}
+            <div id="show_result" class="show_result">
+                <div id="save_ok">查詢結果:</div>
                 <hr>
-                <h2 id="rWord">hat</h2> 
-                <a href="/static/audio/hat/hat.mp3" target="_self">
-                    
+                <h2 id="rWord" class="rWord">{{ searchword }}</h2>
+                {% if search == 'ok' %}
+                <a id="audio_path" href="/static/audio/load/{{ searchword }}.mp3" target="_self">
                     <img src="/static/images/sound.jpg" alt="">
                 </a>
+                {% endif %}
                 
-                <ul>
-                    <li><h4>n.[c]</h4></li>
-                    <li>有邊的帽子</li>
+<!--                <ul>-->
+<!--                    <li><h4>n.[c]</h4></li>-->
+<!--                    <li>有邊的帽子</li>-->
+<!--                </ul>-->
+
+                {% for key, val in chinese_dic.items %}
+                <ul id="chinese_dic">
+                    <li><h4>{{key}}</h4></li>
+                    <li>{{val}}</li>
                 </ul>
-                <ul>
-                    <li><h4>vt.</h4></li>
-                    <li>給……戴上帽子</li>
-                </ul>
-                
+
+                {% empty %}
+                {% if search == 'NG' %}
+                    <ul>
+                        <li>Not Find any data.</li>
+                    </ul>
+                {% endif %}
+                {% endfor %}
             </div>
-            <div class="show_pic">圖片展示
-                <ul>
-                    <li><img src="/static/audio/hat/hat_1.jpeg" alt=""></li>
-                    <li><img src="/static/audio/hat/hat_2.jpeg" alt=""></li>
-                </ul>
-                <ul>
-                    <li><img src="/static/audio/hat/hat_3.jpeg" alt=""></li>
-                    <li><img src="/static/audio/hat/hat_4.jpeg" alt=""></li>
-                </ul>
-                
+            <div id="show_pic" class="show_pic">圖片展示:
+              <hr>
+              <ul>
+                  {% for img in imgs1 %}
+                    <li id="imgs1_{{ forloop.counter }}"><img src="/static/images/load/{{ img }}" alt=""></li>
+                  {% empty %}
+                      {% if search == 'NG' %}
+                      <li>No any pictures.</li>
+                      {% endif %}
+                  {% endfor %}
+               </ul>
+               <ul>
+                  {% for img in imgs2 %}
+                    <li id="imgs2_{{ forloop.counter }}"><img src="/static/images/load/{{ img }}" alt=""></li>
+                  {% endfor %}
+               </ul>
             </div>
         </div>
         
@@ -283,24 +319,17 @@
     <div id="bottom"><p>&copy;2021</p> </div>
 
     <script>
-        
-        var searchWord=document.getElementsByClassName("search_word")[0];
-        // console.log(searchWord);
-        searchWord.onclick=function(){
-            searchWord.placeholder="";
-        };
-
+    /*
         var saveWord=document.getElementsByClassName("save_word")[0];
         var rWord=document.getElementById("rWord");
         var save_ok=document.getElementById("save_ok");
-        console.log(saveWord);
-        console.log(save_ok);
         saveWord.onclick=function(){
             save_ok.innerText="Save OK !!";
         };
+    */
 
-        
+
     </script>
-    
+    <script src="/static/js/searcheng.js"></script>
 </body>
 </html>
