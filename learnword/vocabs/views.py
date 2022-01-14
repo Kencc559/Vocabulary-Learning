@@ -88,18 +88,35 @@ def learn_eng_website_list(request):
     if request.method == 'GET':
         # auser = User.objects.get(id=uid)
         # webs = auser.learningweb_set.all()
-        webs = models.Learningweb.objects.filter(user = uid)
+        try:
+            webs = models.Learningweb.objects.filter(user = uid)
+        except Exception as e:
+            print(e)
         return render(request, "learn_eng_website_list.html",locals())
     elif request.method == 'POST':
         auser = User.objects.get(id=uid)
-        webname = request.POST.get('web_name','')
-        webaddr = request.POST.get('web_addr','')
-        aweb = models.Learningweb.objects.create(webname=webname, webaddr=webaddr, user=auser)
-        webs = auser.learningweb_set.all()
-        return render(request, "learn_eng_website_list.html", locals())
+        webname = request.POST.get('web_name','').strip("")
+        webaddr = request.POST.get('web_addr','').strip("")
+        if(( webname == '') or (webaddr == '')):
+            return HttpResponseRedirect('learn')
+
+        try:
+            awebname = models.Learningweb.objects.get(webname=webname,user_id=auser.id)
+            print('Duplicate web name.')
+            return HttpResponseRedirect('learn')
+        except Exception as e:
+            pass
+        try:
+            aweb = models.Learningweb.objects.create(webname=webname, webaddr=webaddr, user=auser)
+            webs = auser.learningweb_set.all()
+            return render(request, "learn_eng_website_list.html", locals())
+        except Exception as e:
+            print(e)
+            return render(request, "learn_eng_website_list.html")
+
 
 @check_login
-def del_view(request, word):
+def del_review(request, word):
     print('del')
     # print(word)
     uid = request.session['user']['id']
@@ -146,3 +163,56 @@ def sorting(request):
     print(words)
     return render(request, 'review_list.html', locals())
     # return HttpResponseRedirect('review')
+
+@check_login
+def del_website(request):
+    print('del_website')
+    id = request.session['user']['id']
+    webname = request.POST.get('webname','')
+    webaddr = request.POST.get('webaddr','')
+    webname = webname.strip('')
+    try:
+        awebname = models.Learningweb.objects.get(webname=webname,user_id=id)
+        awebname.delete()
+        data = {
+            'result': 'del_ok',
+            'rwebname': '',
+            'rwebaddr': '',
+        }
+    except Exception as e:
+        print(e)
+        data = {
+            'result': 'del_NG',
+            'rwebname': '',
+            'rwebaddr': '',
+        }
+    return HttpResponse(json.dumps(data), content_type='application/json')
+
+
+@check_login
+def mod_website(request):
+    print('mod_website')
+    id = request.session['user']['id']
+    webname = request.POST.get('webname','').strip('')
+    webaddr = request.POST.get('webaddr','').strip('')
+
+    try:
+        aweb = models.Learningweb.objects.get(webname=webname, user_id=id)
+        aweb.webname = webname
+        aweb.webaddr = webaddr
+        aweb.save()
+        data = {
+            'result': 'mod_ok',
+            'rwebname': '',
+            'rwebaddr': '',
+        }
+
+    except Exception as e:
+        print(e)
+        data = {
+            'result': 'mod_error',
+            'rwebname': 'Not exist for 學習網站',
+            'rwebaddr': webaddr,
+        }
+    return HttpResponse(json.dumps(data), content_type='application/json')
+

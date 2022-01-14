@@ -149,31 +149,31 @@ var arrwebsite = [
 //        name : "聽力練習",
 //        web : "https://www.esl-lab.com/easy/"
 //     },
+//        data = {
+//            name : webName,
+//            addr : webAddr
+//        };
 ]
 
 function editdata(){
 //    $(".saved_webname").text("");
-    console.log('test');
     var $webdata = $(".webdata");
 //    var $webName = $(".webdata #webName a");
 //    var $webAddr = $(".webdata #webAddr");
 
 //    console.log($webname.html());
     for(var j=1; j<$webdata.length+1; j++){
-        var webName = $("#webName"+j+" a").text();
-        var webAddr = $("#webAddr"+j ).text();
-        console.log(webName);
-        console.log(webAddr);
+        var $webName = $("#webName"+j+" a").text();
+        var $webAddr = $("#webAddr"+j ).text();
+//        console.log(webName);
+//        console.log(webAddr);
         var data = {
-            name : webName,
-            addr : webAddr
+            name : $webName,
+            addr : $webAddr
         };
         arrwebsite.push(data);
-
     }
-    console.log(arrwebsite);
-
-
+//    console.log(arrwebsite);
     $(".saved_webname").text("");
     for( var j=0; j<arrwebsite.length; j++ ){
         var _HTML=edit_website.site(j, arrwebsite[j].name, arrwebsite[j].addr);
@@ -196,12 +196,12 @@ function origindata(){
 
 function showWord_learn(numb){
     for( var j=0; j<arrwebsite.length; j++ ){
-        console.log('before',numb, j);
+//        console.log('before',numb, j);
         if (numb == j){
-            console.log('after',numb, j);
+//            console.log('after',numb, j);
             $("#website_web_name").val(arrwebsite[j].name); 
-            $("#website_web_addr").val(arrwebsite[j].web); 
-
+            $("#website_web_addr").val(arrwebsite[j].addr);
+            $('#website_del').focus
             return true;
         }
         else{
@@ -212,8 +212,84 @@ function showWord_learn(numb){
     }
 }
 
+function btn_website_del_learn(){
+    var $webname = $("#website_web_name");
+    var $webaddr = $("#website_web_addr");
+    var $website_del = $('#website_del');
+//    console.log($webname);
+//    console.log($webaddr);
+    $.ajax({
+        url:'/t1/vocab/learn/del_website',
+        type:'post',
+        datatype:'json',
+        async: true,
+        data : {
+            webname : $webname.val(),
+            webaddr : $webaddr.val(),
+        },
+        success: function(data){
+            del_list($webname.val());
+            console.log(data.result);
+            $webname.val(data.rwebname);
+            $webaddr.val(data.rwebaddr);
+            editdata();
+            $website_del.css({'background':'#efefef'});
+        },
+        beforeSend: function(data){
+//              console.log('beforSend')
+            $website_del.css({'background':'#ccc'});
+        },
+
+    })
+}
+
+function del_list(webname){
+    console.log(webname)
+    for(var j=0 ; j < arrwebsite.length ; j++ ){
+        console.log(arrwebsite[j].name)
+        if (webname == arrwebsite[j].name){
+            arrwebsite.splice(j,1);
+        };
+    };
+}
+
+function btn_website_modify_learn(){
+    var $webname = $("#website_web_name");
+    var $webaddr = $("#website_web_addr");
+//    var $website_modify = $('#website_modify');
+
+    $.ajax({
+        url: '/t1/vocab/learn/mod_website',
+        type: 'post',
+        datatype: 'json',
+        async: true,
+        data : {
+            webname : $webname.val(),
+            webaddr : $webaddr.val(),
+        },
+        success: function(data){
+            mod_list($webname.val(),$webaddr.val());
+//            console.log(data.result);
+            $webname.val(data.rwebname);
+            $webaddr.val(data.rwebaddr);
+            editdata();
+        },
+    })
+}
+
+function mod_list(webname,webaddr){
+    console.log('mod');
+    for( j=0 ; j < arrwebsite.length ; j++){
+        if (webname == arrwebsite[j].name) {
+            arrwebsite[j].addr = webaddr;
+
+        };
+        console.log(arrwebsite);
+    };
+}
+
+
 function searching_index(){
-//    console.log('test');
     if (($('#search_word').val() == '') || ($('#search_word').val() == 'Please input your vocabulary...')){
         $('#search_word').css({'color':'#FF60AF'});
         $('#search_word').val('Please input your vocabulary...');
@@ -222,17 +298,15 @@ function searching_index(){
 
     $('#search_icon').css('background','#ccc');
     return true
-
 }
 
 function searchword(){
     var $search_word = $('#search_word');
-//         console.log('test');
         $search_word.css({'color':'black'});
         $search_word.val('');
         $search_word.attr('placeholder','');
-
 }
+
 function save_index(){
         //var $saveword = $("#btn_save_word");
         var $rword = $("#rWord");
@@ -258,12 +332,9 @@ function save_index(){
                 word : $rword.text(),
                 audio_path : $audio_path.attr('href'),
                 imgs_path : $imgs1_path.attr('src'),
-
-
-
             },
             success: function(data){
-                console.log('ajax_test OK');
+
                 console.log(data.word);
                 console.log(data.audio_path);
                 console.log(data.imgs_path);
@@ -271,11 +342,6 @@ function save_index(){
                 console.log(data.mesg);
                 $saveok.text(data.mesg);
             },
-
-
-
         })
 //        $saveok.text("Save OK !!");
-
-
 }

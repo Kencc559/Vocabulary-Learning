@@ -27,6 +27,4 @@ urlpatterns = [
     url(r'^t1/',include('index.urls')),
     url(r'^t1/user/',include('users.urls')),
     url(r'^t1/vocab/',include('vocabs.urls')),
-
-
 ]

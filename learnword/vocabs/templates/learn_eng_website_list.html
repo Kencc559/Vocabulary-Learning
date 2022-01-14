@@ -96,7 +96,7 @@
         margin-bottom: 15px;
     }
     #website_add, #website_modify, #website_del{
-        width: 60px;
+        width: 65px;
         margin-bottom: 15px;
         margin-left: 12px;
         padding: 5px 0;
@@ -192,7 +192,7 @@
 
             </li>
             <li class="login">
-                <a href="/t1/user/login">登出</a>
+                <a href="/t1/user/logout">登出</a>
             </li>
         </ul>
 
@@ -202,9 +202,9 @@
         <form action="learn_eng_website_list" method="post">
             <div id="website">
               <input id="website_web_name" type="text" placeholder="(名稱)" name="web_name">
-              <input id="website_add" type="submit" value="加入"> 
-              <input id="website_modify" type="button" value="修改">
-              <input id="website_del" type="button" value="刪除">
+              <input id="website_add" type="submit" value="加入">
+              <input id="website_modify" type="button" value="修改網址" onclick="btn_website_modify_learn()">
+              <input id="website_del" type="button" value="刪除" onclick="btn_website_del_learn()">
               <input id="website_web_addr" type="text" placeholder="(網址)" name="web_addr">
                
             </div>
@@ -222,20 +222,7 @@
                     <li id="webAddr{{ forloop.counter }}" class="webAddr">{{ web.webaddr}}</li>
                 </ul>
                 {% endfor %}
-<!--                <ul>-->
-<!--                    <li class="webName"><a href="https://www.esl-lab.com/easy/" target="_blank">聽力練習</a></li>-->
-<!--                    <li class="webAddr">https://www.esl-lab.com/easy/</li>-->
-<!--                </ul>-->
-<!--                <ul>-->
-<!--                    <li class="webName"><a href="https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional" target="_blank">單字查詢</a></li>-->
-<!--                    <li class="webAddr">https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional</li>-->
-<!--                </ul>-->
 
-                <!-- <ul>
-                    <li class="webName"><a href="https://store.liveabc.com/" target="_blank">LiveABC</a></li>
-                    <li class="webAddr">https://store.liveabc.com/</li>
-                </ul> -->
-                
             </div>
                
             <button id="web_list_edit" onclick="btn_edit_learnWeb()">編輯</button>
