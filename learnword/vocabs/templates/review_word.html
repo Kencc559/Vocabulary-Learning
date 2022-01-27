@@ -198,9 +198,10 @@
             <div class="show_result"> 
                 <div id="save_ok">查詢結果:</div>
                 <hr>
-                <a href="/static/audio/{{ aword.vocab }}.mp3" target="_self">
+                <!-- <a href="/static/audio/{{ aword.vocab }}.mp3" target="_self">
                     <img src="/static/images/sound.jpg" alt="">
-                </a>
+                </a> -->
+                <audio controls src="/static/audio/{{ aword.vocab }}.mp3"></audio>
 
                 {% for key,val in aword.chinese.items %}
                 <ul>

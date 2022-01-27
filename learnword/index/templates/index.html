@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+    <title>Index</title>
     <script src="/static/js/jquery.min.js"></script>
 </head>
 <style>
@@ -66,9 +67,14 @@
         float: left;
     }
     .login{
-        padding-right:60px;
-        margin-left: 800px;
-        float: left;
+        padding-right:123px;
+       /* margin-left: 800px; */
+        float: right;
+    }
+    .infor{
+        padding-right:40px;
+        /* margin-left: 800px; */
+        float: right;
     }
     #content{
         width: 1230px;
@@ -80,14 +86,14 @@
 
     }
     .search{
-        width: 700px;
+        width: 750px;
         /* margin: 0 auto; */
         
         /* border: solid blue 1px; */
     }
     .search_word{
         width: 450px;
-        height: 35px;
+        height: 42px;
         padding: 2px 0 0 20px;
         font-size: 20px;
         border: solid 5px #8E8E8E;
@@ -97,20 +103,60 @@
         margin-left: 50px;
     }
     .search_icon{
-        width: 48px;
+        width: 96px;
         height: 48px;
-        border: solid #000 1px;
-        border-radius: 100%;
-        background-color: yellow;
-        margin-right: 95px;
-        margin-top: 2px;
+        position : relative;
+        border-radius: 10px;
+        background-color: #0f69ff;
+        top: -9px;
+    }
+    .search_icon::before { 
+    content: ' '; 
+    position: absolute; 
+    width: 25px; 
+    height: 25px; 
+    border: 2px solid #fff; 
+    border-radius: 30px; 
+    box-shadow: inset 1px 1px 10px rgba(0,0,0,.3); 
+} 
+.search_icon::after { 
+    content: ' '; 
+    position: absolute; 
+    width: 18px; 
+    height: 5px; 
+    background: #fff; 
+    border-radius: 5px 0 0 5px; 
+    -webkit-transform: rotate(225deg); 
+    -moz-transform: rotate(225deg); 
+    -ms-transform: rotate(225deg); 
+    -o-transform: rotate(225deg); 
+    transform: rotate(225deg); 
+} 
+.search_icon::before { 
+    top: 3px; 
+    left: 26px; 
+} 
+.search_icon::after { 
+    right:25px; 
+    bottom: 8px; 
+} 
+
+    /* .search_icon{
+        width: 96px;
+        height: 48px;
+        /* border: solid #000 1px; */
+        /* border-radius: 10px;
+        background-color: #0f69ff;
+        margin-right: 90px;
+        margin-top: 2px; */
         /* margin-bottom: 20px; */
-        font-size: 15px;
+        /* font-size: 20px;
         display: block;
         float: right;
-        /* background-image: url('\elements\search.png'); */
-        
-    }
+        color: #fff; */
+        /* background-image: url('\elements\search.png'); */ 
+    /* } */ */
+
     .search_img{
         /* margin-top: 20px; */
         width: 15px;
@@ -139,7 +185,7 @@
         width: 30px;
         margin-top: 10px;
         margin-left: 5px;
-<!--        display: none;-->
+        /* display: none; */
     }
 
     .show_result ul{
@@ -178,19 +224,20 @@
     .show_pic>ul{
         
         margin: 0 auto;
-        width: 420px;
+        width: 500px;
         /* border: solid red 1px; */
-
+        text-align: center;
         list-style-type: none;
         overflow: hidden;
         padding-top: 5px;
     }
     .show_pic>ul>li{
         float: left;
-        margin: 0 2px;
+        margin: 0 8px;
     }
     .show_pic>ul>li>img{
-        width: 200px;
+        width: 230px;
+         height: 230px;
     }
     .save_word{
         margin-left: 10px;
@@ -198,9 +245,11 @@
         /* display: inline-block; */
         width: 15x;
         font-size: 15px;
-
     }
-    
+    #loading{
+        display: none;
+    }
+  
     /* p{
         height: 400px;
     } */
@@ -228,12 +277,13 @@
                 <a href="/t1/user/login.html">登入</a>
                 {% endif %}
             </li>
-            <li>
+            <li class="infor">
 <!--             個人中心-->
                 {% if index.login == 'ok'%}
                 <a href="/t1/user/infor">{{ index.infor }}</a>
                 {% endif %}
             </li>
+
          </ul>   
 
     </div>
@@ -248,11 +298,12 @@
                        placeholder="Search English -> Chinese"
                        name="searchWord"
                        onclick="searchword()">
-                <!-- <input type="submit" class="search_icon" value="搜尋"> -->
-                <button id="search_icon" type="submit" class="search_icon">搜尋
-                    <img class="search_img" src="/static/images/search.png" alt="No Pictures">
-                
+                <!-- <input type="submit" class="search_icon" value="搜尋搜 索"> -->
+                <button id="search_icon" type="submit" class="search_icon">
+                    <!-- <button id="search_icon" type="submit" class="btn btn-primary">搜尋 -->
+                    <!-- <img class="search_img" src="/static/images/search.png" alt="No Pictures"> -->
                 </button>
+                <!-- </button> -->
                     
             </form>
 
@@ -268,13 +319,20 @@
             {% endif %}
             {% endif %}
             <div id="show_result" class="show_result">
-                <div id="save_ok">查詢結果:</div>
+                <div id="save_ok">查詢結果: <span></span> </div>
                 <hr>
                 <h2 id="rWord" class="rWord">{{ searchword }}</h2>
                 {% if search == 'ok' %}
-                <a id="audio_path" href="/static/audio/load/{{ searchword }}.mp3" target="_self">
-                    <img src="/static/images/sound.jpg" alt="">
-                </a>
+<!--                <a id="audio_path" href="/static/audio/load/{{ searchword }}.mp3" target="_self">-->
+<!--                    <img src="/static/images/sound.jpg" alt="">-->
+<!--                </a>-->
+<!--                <audio controls>-->
+<!--                    <source src="/static/audio/load/{{ searchword }}.mp3">-->
+<!--                </audio>-->
+                <audio
+                  src="/static/audio/load/{{ searchword }}.mp3"
+                  controls autoplay>
+                </audio>
                 {% endif %}
                 
 <!--                <ul>-->
@@ -283,14 +341,14 @@
 <!--                </ul>-->
 
                 {% for key, val in chinese_dic.items %}
-                <ul id="chinese_dic">
+                <ul class="chinese_dic">
                     <li><h4>{{key}}</h4></li>
                     <li>{{val}}</li>
                 </ul>
 
                 {% empty %}
                 {% if search == 'NG' %}
-                    <ul>
+                    <ul class="chinese_dic">
                         <li>Not Find any data.</li>
                     </ul>
                 {% endif %}
@@ -298,21 +356,25 @@
             </div>
             <div id="show_pic" class="show_pic">圖片展示:
               <hr>
-              <ul>
+              <ul class="imgs">
                   {% for img in imgs1 %}
-                    <li id="imgs1_{{ forloop.counter }}"><img src="/static/images/load/{{ img }}" alt=""></li>
+                    <li id="imgs1_{{ forloop.counter }}"><img src="/static/images/load/{{ img }}" alt="" ></li>
                   {% empty %}
                       {% if search == 'NG' %}
                       <li>No any pictures.</li>
                       {% endif %}
                   {% endfor %}
                </ul>
-               <ul>
+               <ul class="imgs">
                   {% for img in imgs2 %}
                     <li id="imgs2_{{ forloop.counter }}"><img src="/static/images/load/{{ img }}" alt=""></li>
                   {% endfor %}
                </ul>
             </div>
+        </div>
+        <div id="loading">
+            <div>正在抓取資料，請耐心等候...</div>
+            <img src="/static/images/loading.gif" alt="" width="350px">
         </div>
         
     </div>

@@ -62,7 +62,7 @@ def reviewword(request, **kwargs):
     id = request.session['user']['id']
     print(word, id)
     try:
-        aword = models.Vocab.objects.get(user_id=id, vocab=word)
+        aword = models.Vocab.objects.get(vocab=word, user_id=id)
         aword.review_cycle = int(aword.review_cycle) + 1
         aword.save()
         aword.chinese = json.loads(aword.chinese)

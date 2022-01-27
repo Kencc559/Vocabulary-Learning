@@ -1,7 +1,10 @@
 #file: index/views.py
+
 import glob
 import os
+import time
 
+import requests
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
@@ -27,21 +30,37 @@ def index(request):
         # cache.set('v', '555', 60*60)
         # print(cache.has_key('v'))
         # print(cache.get('v'))
+
         return render(request, "index.html", locals())
 
     elif request.method == "POST":
-        search = 'ok'
         searchword = request.POST.get('searchWord','0')
         print(searchword)
         if not redis_db.exists(searchword):
-            os.chdir('/home/ubuntu/TeduProject/spider/Yahoo')
-            os.system('scrapy crawl yahoo -a inquireWord=%s' %searchword)
-
-        try:
-            sword = redis_db.keys(searchword)[0].decode()
-        except:
-            search = 'NG'
-            return render(request, "index.html", locals())
+            # os.chdir('/home/ubuntu/TeduProject/spider/Yahoo')
+            # os.system('scrapy crawl yahoo -a inquireWord=%s' %searchword)
+            r_scrapyd = scrapyd.schedule('Yahoo', 'yahoo', inquireWord=searchword)
+            # url = 'http://localhost:6800/schedule.json'
+            # data = {'project':'Yahoo','spider':'yahoo','inquireWord':searchword}
+            # requests.post(url=url,data=data)
+            # return HttpResponse('OK')
+            time.sleep(6)
+            print(r_scrapyd, '*'*20)
+        i = 0
+        while i < 5:
+            try:
+                sword = redis_db.keys(searchword)[0].decode()
+                print(sword)
+                if sword == searchword:
+                    search = 'ok'
+                    break
+            except:
+                time.sleep(3)
+                search = 'NG'
+                print(search)
+                i += 1
+                if i == 5 and search == 'NG':
+                    return render(request, "index.html", locals())
         # printOut(searchword, 'chinese')
         # print(sword[0].decode())
         chinese = redis_db.hget(searchword, 'chinese').decode('unicode_escape')
@@ -100,10 +119,10 @@ def save_word(request):
 
     sword = request.POST.get('word','')
     uid = request.session['user']['id']
-
+    print(sword, uid)
     try:
         aword = models.Vocab.objects.get(vocab=sword,user_id=uid)
-        mesg = 'Save duplicated !!'
+        mesg = '已儲存過 !!'
         audio_file = ''
         imgs_file =''
         chinese_dic = ''
@@ -123,13 +142,13 @@ def save_word(request):
                                             audio=audio_file,
                                             image=imgs_file,
                                             user_id=uid)
-        mesg = 'Save ok'
+        mesg = '儲存完成 !!'
     print(audio_file)
     data = {
         'word': sword,
         'audio_path' : audio_file,
         'imgs_path' : imgs_file,
-        'chinese' : chinese_json,
+        # 'chinese' : chinese_json,
         'mesg' : mesg,
     }
     return HttpResponse(json.dumps(data), content_type= 'application/json')

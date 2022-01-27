@@ -18,7 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url,include
-# from . import views
+from . import views
 # from index import views
 
 
@@ -27,4 +27,9 @@ urlpatterns = [
     url(r'^t1/',include('index.urls')),
     url(r'^t1/user/',include('users.urls')),
     url(r'^t1/vocab/',include('vocabs.urls')),
+    url(r'^test',views.test),
+    url(r'^postsign/',views.postsign),
+    url(r'logout/',views.logout, name="log"),
+    url(r'^signup/', views.signUp, name='signup'),
+    url(r'^postsignup/', views.postsignup, name='postsignup'),
 ]

@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^reg', views.registor),
     url(r'^logout', views.logout),
     url(r'^infor', views.infor),
+    url(r'^google_sign_in$', views.google_sign_in),
 
 ]
 

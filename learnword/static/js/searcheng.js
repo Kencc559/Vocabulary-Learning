@@ -201,7 +201,7 @@ function showWord_learn(numb){
 //            console.log('after',numb, j);
             $("#website_web_name").val(arrwebsite[j].name); 
             $("#website_web_addr").val(arrwebsite[j].addr);
-            $('#website_del').focus
+            $('#website_del').focus();
             return true;
         }
         else{
@@ -288,16 +288,35 @@ function mod_list(webname,webaddr){
     };
 }
 
+//function btn_search_index(){
+//    $('#save_ok').text()="";
+//    $('#rWord').text("");
+//    $('#audio_path').text("");
+//    $('#chinese_dic').text("");
+//    $('#chinese_dic_empty').text("");
+//    $('#show_pic').text("");
+//
+//}
 
 function searching_index(){
     if (($('#search_word').val() == '') || ($('#search_word').val() == 'Please input your vocabulary...')){
         $('#search_word').css({'color':'#FF60AF'});
         $('#search_word').val('Please input your vocabulary...');
         return false
-    }
+    }else{
+//        $('#show_result').text('');
 
-    $('#search_icon').css('background','#ccc');
-    return true
+        $('#show_result').text('');
+//        $('#save_ok').text('');
+//        $('#rWord').text('');
+//        $('.chinese_dic').text('');
+        $('#btn_save_word').css({'display': 'none'});
+        $('#show_pic').text('');
+//        $('.imgs').text('');
+        $('#search_icon').css('background','#ccc');
+        $('#loading').show();
+        return true
+    }
 }
 
 function searchword(){
@@ -309,8 +328,8 @@ function searchword(){
 
 function save_index(){
         //var $saveword = $("#btn_save_word");
-        var $rword = $("#rWord");
-        var $saveok = $("#save_ok");
+        var $rword = $('#rWord');
+        var $saveok = $('#save_ok span');
         var $chinese_dic =$('#chinese_dic li');
         var $audio_path = $('#show_result a');
         var $imgs1_path = $('#imgs1_1 img')
@@ -335,13 +354,41 @@ function save_index(){
             },
             success: function(data){
 
-                console.log(data.word);
-                console.log(data.audio_path);
-                console.log(data.imgs_path);
-                console.log(data.chinese);
-                console.log(data.mesg);
+//                console.log(data.word);
+//                console.log(data.audio_path);
+//                console.log(data.imgs_path);
+//                console.log(data.chinese);
+//                console.log(data.mesg);
                 $saveok.text(data.mesg);
+                $saveok.show();
+                log.submit.autohide($saveok);
+//                $saveok.text('查詢結果:')
             },
+//            beforeSend: function(){
+//                $saveok.text();
+//            },
         })
 //        $saveok.text("Save OK !!");
 }
+function btn_reg_login(){
+    document.location.href='/t1/user/register'
+}
+
+//function onSignIn(googleUser){
+//        var id_token = googleUser.getAuthResponse().id_token;
+//        var profile = googleUser.getBasicProfile();
+//        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+//        console.log('Name: ' + profile.getName());
+//        console.log('Image URL: ' + profile.getImageUrl());
+//        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+//        $.ajax({
+//          type: "POST",
+//          url: '/t1/user/google_sign_in',
+//          data: JSON.stringify({'id_token': id_token}),
+//          success: function() {
+//            console.log('login success')
+//          },
+//          dataType: 'json',
+//          contentType:"application/json",
+//        });
+//}

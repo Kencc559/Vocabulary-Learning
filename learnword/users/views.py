@@ -1,12 +1,17 @@
 #file: users/views.py
 import hashlib
+import json
 
+from google.oauth2 import id_token
+from google.auth.transport import requests
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from . import models
 import re
-# Create your views here.
+from django.contrib import auth
 
+GOOGLE_OAUTH2_CLIENT_ID = '702079640017-rva3kqr1ad3mm1780l7mrhfkabgqrc3c.apps.googleusercontent.com'
+# Create your views here.
 def registor(request):
     if request.method == 'GET':
         return render(request, "user/register.html")
@@ -40,7 +45,8 @@ def registor(request):
 
     except:
         auser = models.User.objects.create(username=username, password=m.hexdigest())
-        reg_ok = '註冊成功!請'
+        reg_ok = '註冊成功!請登入'
+        google_oauth2_client_id = GOOGLE_OAUTH2_CLIENT_ID
         resp = render(request, 'user/login.html', locals())
         resp.set_cookie('username',username)
 
@@ -48,6 +54,8 @@ def registor(request):
 
 
 def login(request):
+    google_oauth2_client_id = GOOGLE_OAUTH2_CLIENT_ID
+    reg_ok = "登入"
     if request.method == 'GET':
         username = request.COOKIES.get('username','')
         return render(request, "user/login.html", locals())
@@ -89,9 +97,14 @@ def login(request):
 
 
 def logout(request):
+    print('logout')
     if 'user' in request.session:
         del request.session['user']
-        return HttpResponseRedirect('/t1/user/login')
+        resp = render(request, 'index.html', locals())
+        resp.delete_cookie('username')
+        auth.logout(request)
+    # return HttpResponseRedirect('/t1')
+    return resp
 
 def infor(request):
     username = request.COOKIES.get('username', '')
@@ -121,5 +134,61 @@ def infor(request):
         username = '無此帳號!!'
     return render(request, 'user/infor.html', locals())
 
+def google_sign_in(request):
 
+    # if request.method == 'GET':
+    #     print('google singin GET')
+    #     # google_oauth2_client_id = GOOGLE_OAUTH2_CLIENT_ID
+    #     return render(request, 'user/login.html',locals())
+        
+    if request.method =='POST':
+        print('google singin POST')
+        # print(json.loads(request.body))
+        # print(type(json.loads(request.body)))
+        # print('11*' * 50)
+        # token = request.body['id_token'].decode()
+        token = json.loads(request.body)['id_token']
+        # print(token)
+        # print(type(token))
+        # print('44*' * 50)
+
+        try:
+            id_info = id_token.verify_oauth2_token(
+                token,
+                requests.Request(),
+                GOOGLE_OAUTH2_CLIENT_ID
+            )
+            print('*' * 20, id_info, '*' * 20)
+            if id_info['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+                raise ValueError('Wrong issuer.')
+        except ValueError:
+            # Invalid token
+            raise ValueError('Invalid token')
+
+        username = id_info['email']
+        password = id_info['sub']
+        m = hashlib.md5()
+        password += 'salt'
+        m.update(password.encode())
+        print('登入成功')
+        try:
+            auser = models.User.objects.get(username=username)
+        except:
+            auser = models.User.objects.create(username=username, password=m.hexdigest())
+        request.session['user'] = {
+            'username': username,
+            'id': auser.id
+        }
+        index = {
+            'login': 'ok',
+            'infor': request.session['user']['username'],
+        }
+        # resp = render(request, 'index.html', locals(), content_type='application/json')
+        resp = HttpResponse(json.dumps(index),content_type='application/json')
+        resp.set_cookie('username', username)
+        return resp
+
+        # return HttpResponse(json.dumps(id_info),content_type='application/json')
+        # return HttpResponse(json.dumps(index),content_type='application/json')
+        # return JsonResponse(index)
 
