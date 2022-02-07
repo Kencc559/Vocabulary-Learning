@@ -20,14 +20,19 @@
         padding: 0;
     }
     #top{
+        /* border: solid red 1px; */
+        margin: 0 auto;
         width: 100%;
-        color: #fff;
-        height: 45px;
+        color: #ffffff;
+        height: 58px;
         position: fixed;
-        top: 1px;
-        background-color: #005AB5;
-        border-radius: 10%;
+        float: left;
+        top: 0px;
+        /* line-height: 58px; */
+        background-color: #1d2a57;
+        /* border-radius: 10%; */
         font-size: 18px;
+        z-index: 99;
     }
     #bottom{
         width: 100%;
@@ -40,19 +45,35 @@
         
     }
  
-    #nav{
+    /* #nav{
         margin-left: 55px;
         overflow: hidden;
         list-style: none;
         line-height: 48px;
         
+    } */
+    #top>#nav{
+        /* width: 1300px; */
+        margin: 0 auto;
+        margin-left: 55px;
+        overflow: hidden;
+        /* border: solid red 1px; */
+        list-style-type: none;
+        line-height: 58px;      
     }
     #nav a{
         color: white;
         text-decoration: none;
     }
     #nav>.home{
+        /* border: solid red 1px; */
         float: left;
+        margin-top: 10px;
+    }
+
+    #nav .home  img{
+        width: 40px;
+        border-radius: 40px;
     }
     
     #nav>.register{
@@ -66,7 +87,7 @@
         /* text-align: center; */
         /* border: solid 0red 1px; */
         /* padding-top: 0px; */
-        margin-top: 60px;
+        margin-top: 70px;
 
     }
     .user_pwd{
@@ -113,12 +134,12 @@
         margin-left: 67px;
     }
     .btn button{
-        border: solid 1px #0066CC;
+        border: solid 1px #234b9a;
         width: 80px;
         padding: 5px 7px;
         font-size: 15px;
-        color: #fff;
-        background-color: #0066CC;
+        color: #fff3e5;
+        background-color: #234b9a;
         margin-bottom: 10px;
     }
     .btn button:nth-child(2){
@@ -127,10 +148,10 @@
     .btn button>a{
         text-decoration: none;
         cursor: default;
-        color: #fff;
+        color: #fff3e5;
     }
     h1{
-        border: solid #0066CC 3px;
+        border: solid #234b9a;
         width: 315px;
         text-align: center;
         font-size: 40px;
@@ -178,7 +199,10 @@
     <div id="top">
         <ul id="nav">
             <li class="home">
-                <a href="/t1">首頁</a>
+                <!-- <a href="/t1">首頁</a> -->
+                <a href="/t1">
+                    <img src="/static/images/home.png" alt="">
+                </a>
             </li>
             <!-- <li class="register">
                 <a href="register.html">註冊</a>
@@ -224,10 +248,10 @@
                 var id_token = googleUser.getAuthResponse().id_token;
                 var profile = googleUser.getBasicProfile();
                 // console.log(id_token);
-                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-                console.log('Name: ' + profile.getName());
-                console.log('Image URL: ' + profile.getImageUrl());
-                console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                // console.log('Name: ' + profile.getName());
+                // console.log('Image URL: ' + profile.getImageUrl());
+                // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
                     $.ajax({
                     type: "POST",
                     url: '/t1/user/google_sign_in',

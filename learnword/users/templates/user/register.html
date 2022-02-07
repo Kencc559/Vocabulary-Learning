@@ -13,14 +13,19 @@
         padding: 0;
     }
     #top{
+        /* border: solid red 1px; */
+        margin: 0 auto;
         width: 100%;
-        color: #fff;
-        height: 45px;
+        color: #ffffff;
+        height: 58px;
         position: fixed;
-        top: 1px;
-        background-color: #005AB5;
-        border-radius: 10%;
+        float: left;
+        top: 0px;
+        /* line-height: 58px; */
+        background-color: #1d2a57;
+        /* border-radius: 10%; */
         font-size: 18px;
+        z-index: 99;
     }
     #bottom{
         width: 100%;
@@ -33,18 +38,27 @@
         
     }
  
-    #nav{
+    #top>#nav{
+        /* width: 1300px; */
+        margin: 0 auto;
         margin-left: 55px;
         overflow: hidden;
-        list-style: none;
-        line-height: 48px;
+        /* border: solid red 1px; */
+        list-style-type: none;
+        line-height: 58px;      
     }
     #nav a{
         color: white;
         text-decoration: none;
     }
     #nav>.home{
+        /* border: solid red 1px; */
         float: left;
+        margin-top: 10px;
+    }
+    #nav .home  img{
+        width: 40px;
+        border-radius: 40px;
     }
     
     #content{
@@ -97,21 +111,21 @@
     }
     .btn{
         /* border: solid 1px #234b9a; */
-<!--        border: solid red 1px;-->
-        width: 400px;
-        margin: 0 auto;
+        /* border: solid red 1px; */
+        width: 326px;
+        /* margin: 0 auto; */
         text-align: center;
         margin-top: 30px;
+        margin-left: 3px;
         /* margin-left: 120px; */
     }
     .btn button{
-        
-        border: solid 1px #0066CC;
+        border: solid 1px #234b9a;
         width: 80px;
         padding: 5px 7px;
         font-size: 15px;
         color: #fff;
-        background-color: #0066CC;
+        background-color: #234b9a;
     }
     .btn button:nth-child(2){
         margin-left: 30px;
@@ -122,7 +136,7 @@
         color: #fff;
     }
     h1{
-        border: solid #0066CC 3px;
+        border: solid #234b9a  3px;
         width: 324px;
         text-align: center;
         font-size: 40px;
@@ -149,7 +163,10 @@
     <div id="top">
         <ul id="nav">
             <li class="home">
-                <a href="/t1">首頁</a>
+                <!-- <a href="/t1">首頁</a> -->
+                <a href="/t1">
+                    <img src="/static/images/home.png" alt="">
+                </a>
             </li>
         </ul>
 

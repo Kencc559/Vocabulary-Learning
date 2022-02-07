@@ -17,14 +17,16 @@
         /* border: solid red 1px; */
         margin: 0 auto;
         width: 100%;
-        color: #fff;
-        height: 45px;
+        color: #ffffff;
+        height: 58px;
         position: fixed;
         float: left;
-        top: 1px;
-        background-color: #005AB5;
-        border-radius: 10%;
+        top: 0px;
+        /* line-height: 58px; */
+        background-color: #1d2a57;
+        /* border-radius: 10%; */
         font-size: 18px;
+        z-index: 99;
     }
     #bottom{
         width: 100%;
@@ -44,18 +46,23 @@
         overflow: hidden;
         /* border: solid red 1px; */
         list-style-type: none;
-        line-height: 48px;      
+        line-height: 58px;      
     }
     #nav a{
         color: white;
         text-decoration: none;
     }
     .home{
-        
         /* border: solid red 1px; */
         float: left;
+        margin-top: 10px;
     }
-    
+
+    #top .home  img{
+        width: 40px;
+        border-radius: 40px;
+    }
+
     .review{
         padding-right:30px;
         margin-left: 60px;
@@ -76,56 +83,59 @@
         /* margin-left: 800px; */
         float: right;
     }
-    #content{
-        width: 1230px;
-        margin: 0 auto;
-        text-align: center;
-        /* border: solid red 2px; */
-        /* padding-top: 0px; */
-        margin-top: 75px;
-
-    }
-    .search{
-        width: 750px;
-        /* margin: 0 auto; */
+   
+    #search{
+        width: 100%;
+        /* margin-left: 50px; */
+        background-color: #0f173b;
         
+        position: fixed;
+        z-index: 99;
+        /* margin-top: 55px; */
         /* border: solid blue 1px; */
     }
     .search_word{
         width: 450px;
-        height: 42px;
+        height: 36px;
+        float: left;
         padding: 2px 0 0 20px;
         font-size: 20px;
-        border: solid 5px #8E8E8E;
+        /* border: solid 5px #8E8E8E; */
         border-radius: 40px;
         display: inline-block;
-        margin-bottom: 10px;
-        margin-left: 50px;
+        /* margin-bottom: 10px; */
+        margin-top: 3px;
+        margin-bottom: 3px;
+        margin-left: 82px;
+        /* float: left; */
     }
     .search_icon{
-        width: 96px;
-        height: 48px;
+        width: 40px;
+        height: 40px;
         position : relative;
-        border-radius: 10px;
-        background-color: #0f69ff;
-        top: -9px;
+        border-radius: 25px;
+        background-color: #fec400;
+        top: 5px;
+        /* float: left; */
     }
     .search_icon::before { 
     content: ' '; 
     position: absolute; 
-    width: 25px; 
-    height: 25px; 
-    border: 2px solid #fff; 
+    width: 13px; 
+    height: 13px; 
+    border: 2px solid #000; 
+    /* border: 2px solid red;  */
     border-radius: 30px; 
-    box-shadow: inset 1px 1px 10px rgba(0,0,0,.3); 
+    box-shadow: inset 1px 1px 10px rgba(0,0,0,0); 
 } 
 .search_icon::after { 
     content: ' '; 
     position: absolute; 
-    width: 18px; 
-    height: 5px; 
-    background: #fff; 
-    border-radius: 5px 0 0 5px; 
+    width: 7px; 
+    height: 2px; 
+    background: #000; 
+    /* background: red;  */
+    /* border-radius: 4px 0 0 4px;  */
     -webkit-transform: rotate(225deg); 
     -moz-transform: rotate(225deg); 
     -ms-transform: rotate(225deg); 
@@ -133,12 +143,12 @@
     transform: rotate(225deg); 
 } 
 .search_icon::before { 
-    top: 3px; 
-    left: 26px; 
+    top: 8px; 
+    left: 8px; 
 } 
 .search_icon::after { 
-    right:25px; 
-    bottom: 8px; 
+    right:7px; 
+    bottom: 10px; 
 } 
 
     /* .search_icon{
@@ -163,16 +173,25 @@
         height: 15px;
         /* background-image:; */
     }
-    
-    .result{
+    #content{
+        width: 1230px;
+        margin: 0 auto;
+        /* text-align: center; */
+        border: solid#fff 1px;
+        /* padding-top: 0px; */
+        margin-top: 58px;
+    }
+
+    #content .result{
         overflow: hidden;
         width: 1130px;
         margin: 0 auto;
-        margin-top: 20px;
+        margin-top: 60px;
         text-align: left;
+        /* border: solid black 1px; */
     }
     .show_result{        
-        border: solid #0080FF 1px;
+        border: solid #0080FF 3px;
         padding: 15px;
         width: 496px;
         float: left;
@@ -213,10 +232,10 @@
     }
     
     .show_pic{
-        border: solid #00E3E3 1px;
+        border: solid #0080FF 3px;
         width: 500px;
         float: right;
-        margin-right: 10px;
+        /* margin-right: 2px; */
         margin-bottom: 30px;
         padding: 15px;
 
@@ -240,20 +259,27 @@
          height: 230px;
     }
     .save_word{
-        margin-left: 10px;
-        padding: 3px;
+        margin-left: 0px;
+        margin-top: 0px;
+        padding: 6px;
         /* display: inline-block; */
         width: 15x;
-        font-size: 15px;
+        font-size: 14px;
+        background-color: #234b9a;
+        color: #fff;
+        /* border:  solid 1px red; */
     }
     #loading{
+        /* margin-left: 50px; */
+        margin:  0 auto;
+        text-align: center;
         display: none;
     }
   
     /* p{
         height: 400px;
     } */
-    
+
 </style>
 
 
@@ -262,7 +288,10 @@
     <div id="top">
         <ul id="nav">
             <li class="home">
-                <span style="color: #ccc;">首頁</span>
+                <!-- <span style="color: #ccc;">首頁</span> -->
+                <a href="/t1">
+                    <img src="/static/images/home.png" alt="">
+                </a>
             </li>
             <li class="review">
                 <a href="/t1/vocab/review_list.html">複習</a>
@@ -285,29 +314,28 @@
             </li>
 
          </ul>   
-
     </div>
-        
-    <div id="content">
-        <div class="search">
-            <!-- <label for="">單字查詢</label>    -->
-            <form action="/t1/" method="post" onsubmit="return searching_index()">
-                <input id="search_word"
-                       type="text"
-                       class="search_word"
-                       placeholder="Search English -> Chinese"
-                       name="searchWord"
-                       onclick="searchword()">
-                <!-- <input type="submit" class="search_icon" value="搜尋搜 索"> -->
-                <button id="search_icon" type="submit" class="search_icon">
-                    <!-- <button id="search_icon" type="submit" class="btn btn-primary">搜尋 -->
-                    <!-- <img class="search_img" src="/static/images/search.png" alt="No Pictures"> -->
-                </button>
-                <!-- </button> -->
-                    
-            </form>
+    <div id="search" class="search">
+        <!-- <label for="">單字查詢</label>    -->
+        <form action="/t1/" method="post" onsubmit="return searching_index()">
+            <input id="search_word"
+                   type="text"
+                   class="search_word"
+                   placeholder="Search English -> Chinese"
+                   name="searchWord"
+                   onclick="searchword()">
+            <!-- <input type="submit" class="search_icon" value="搜尋搜 索"> -->
+            <button id="search_icon" type="submit" class="search_icon">
+                <!-- <button id="search_icon" type="submit" class="btn btn-primary">搜尋 -->
+                <!-- <img class="search_img" src="/static/images/search.png" alt="No Pictures"> -->
+            </button>
+            <!-- </button> -->
+                
+        </form>
+    </div>    
 
-        </div>
+    <div id="content">
+
         <div class="result">
             {% if index.login == 'ok' %}
             {% if search == 'ok' %}
@@ -376,7 +404,9 @@
             <div>正在抓取資料，請耐心等候...</div>
             <img src="/static/images/loading.gif" alt="" width="350px">
         </div>
-        
+        <!-- <div>{{request.session.user}}</div> -->
+        <!-- <div>{{request.session.user.username}}</div>
+        <div>{{request.session.user.id}}</div> -->
     </div>
     <div id="bottom"><p>&copy;2021</p> </div>
 

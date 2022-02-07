@@ -299,6 +299,7 @@ function mod_list(webname,webaddr){
 //}
 
 function searching_index(){
+    $search_icon = $('#search_icon');
     if (($('#search_word').val() == '') || ($('#search_word').val() == 'Please input your vocabulary...')){
         $('#search_word').css({'color':'#FF60AF'});
         $('#search_word').val('Please input your vocabulary...');
@@ -315,15 +316,20 @@ function searching_index(){
 //        $('.imgs').text('');
         $('#search_icon').css('background','#ccc');
         $('#loading').show();
+        $search_icon.css({'z-index': -1});
         return true
     }
 }
 
 function searchword(){
+    console.log('searchword')
     var $search_word = $('#search_word');
+    var $search_icon = $('#search_icon');
         $search_word.css({'color':'black'});
         $search_word.val('');
         $search_word.attr('placeholder','');
+        $search_icon.css({'z-index': 1});
+
 }
 
 function save_index(){

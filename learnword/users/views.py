@@ -97,13 +97,15 @@ def login(request):
 
 
 def logout(request):
-    print('logout')
     if 'user' in request.session:
         del request.session['user']
-        resp = render(request, 'index.html', locals())
+        resp = HttpResponseRedirect('/t1')
+        # resp = render(request, 'index.html', locals())
         resp.delete_cookie('username')
-        auth.logout(request)
+        # auth.logout(request)
     # return HttpResponseRedirect('/t1')
+    else:
+        resp = HttpResponseRedirect('/t1')
     return resp
 
 def infor(request):
@@ -142,7 +144,6 @@ def google_sign_in(request):
     #     return render(request, 'user/login.html',locals())
         
     if request.method =='POST':
-        print('google singin POST')
         # print(json.loads(request.body))
         # print(type(json.loads(request.body)))
         # print('11*' * 50)
@@ -188,7 +189,5 @@ def google_sign_in(request):
         resp.set_cookie('username', username)
         return resp
 
-        # return HttpResponse(json.dumps(id_info),content_type='application/json')
-        # return HttpResponse(json.dumps(index),content_type='application/json')
         # return JsonResponse(index)
 
